@@ -8,7 +8,7 @@ type ProductListItemDescriptionProps = {
 export const ProductListItemDescription = ({ product }: ProductListItemDescriptionProps) => {
 	return (
 		<div className="flex flex-col gap-4 w-full justify-between">
-			<p className="text-xs">{product.name}</p>
+			<h3 className="text-xs">{product.name}</h3>
 			<p className="font-bold text-xs">{formatMoney(product.price)}</p>
 		</div>
 	);
