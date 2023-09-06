@@ -1,14 +1,14 @@
-type Product = {
-	name: string;
-	coverImage: Image;
-	price: Money;
+export type Product = {
+  name: string;
+  coverImage: Image;
+  price: Money;
 };
 
-type Image = {
-	src: string;
-	alt: string;
+export type Image = {
+  src: string;
+  alt: string;
 };
 
-type Money = {
-	value: number;
+export type Money = {
+  value: number;
 };

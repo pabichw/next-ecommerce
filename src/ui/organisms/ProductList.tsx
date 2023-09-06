@@ -1,4 +1,5 @@
 import { ProductListItem } from "@/ui/molecules/ProductListItem";
+import type { Product } from '@/types';
 
 const FAKE_PRODUCTS: Product[] = [
   {
@@ -31,7 +32,7 @@ export const ProductList = () => {
   return (
     <ul data-testid="products-list" className="flex gap-8">
       {FAKE_PRODUCTS.map((product) => (
-        <ProductListItem product={product} />
+        <ProductListItem key={product.name} product={product} />
       ))}
     </ul>
   );
