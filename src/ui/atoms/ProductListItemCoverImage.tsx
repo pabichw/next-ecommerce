@@ -1,3 +1,5 @@
+import type { Image } from '@/types';
+
 type ProductListItemCoverImageProps = {
   image: Image;
 };
