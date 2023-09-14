@@ -17,7 +17,7 @@ async function Page() {
 	}));
 
 	return (
-		<main className="flex flex-col items-center gap-20 p-24">
+		<main className="flex flex-col gap-20">
 			<h1 className="text-3xl font-bold">Product list page</h1>
 			<ProductList products={formattedProducts} />
 		</main>

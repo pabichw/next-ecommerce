@@ -8,3 +8,9 @@ body {
 
 	background-color: theme("colors.slate.100");
 }
+
+main {
+	max-width: 1480px;
+	margin-inline: auto;
+	padding: theme("spacing.8");
+}

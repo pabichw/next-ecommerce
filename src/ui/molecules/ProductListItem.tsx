@@ -1,7 +1,7 @@
-import Link from "next/link";
 import type { Product } from "@/types";
 import { ProductListItemCoverImage } from "@/ui/atoms/ProductListItemCoverImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescripton";
+import Link from "next/link";
 
 export const ProductListItem = ({ product }: { product: Product }) => {
 	return (
