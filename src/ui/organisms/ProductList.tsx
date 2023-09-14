@@ -1,45 +1,10 @@
-import type { Product } from "@/types";
+import { Product } from "@/types";
 import { ProductListItem } from "@/ui/molecules/ProductListItem";
 
-const FAKE_PRODUCTS: Product[] = [
-	{
-		name: "Talerz",
-		price: { value: 100 },
-		coverImage: {
-			src: "http://via.placeholder.com/150x125/782",
-			alt: "Fajny talerz",
-		},
-	},
-	{
-		name: "Koudra",
-		price: { value: 200 },
-		coverImage: {
-			src: "http://via.placeholder.com/150x125/82",
-			alt: "Miętka kordła",
-		},
-	},
-	{
-		name: "Kubek",
-		price: { value: 200 },
-		coverImage: {
-			src: "http://via.placeholder.com/150x125/252",
-			alt: "Miętka kordła",
-		},
-	},
-	{
-		name: "Widelec",
-		price: { value: 200 },
-		coverImage: {
-			src: "http://via.placeholder.com/150x125/652",
-			alt: "Miętka kordła",
-		},
-	},
-];
-
-export const ProductList = () => {
+export const ProductList = ({ products }: { products: Product[] }) => {
 	return (
-		<ul data-testid="products-list" className="flex gap-8">
-			{FAKE_PRODUCTS.map((product) => (
+		<ul data-testid="products-list" className="flex flex-wrap gap-8">
+			{products.map((product) => (
 				<ProductListItem key={product.name} product={product} />
 			))}
 		</ul>
