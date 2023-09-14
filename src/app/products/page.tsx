@@ -9,7 +9,7 @@ type ProductsPageProps = {
   };
 };
 
-async function ProductsPage({ params }: ProductsPageProps) {
+async function ProductsPageMain({ params }: ProductsPageProps) {
   const products = await getProducts({ page: params.page });
 
   const formattedProducts: Product[] = products.map((product) => ({
@@ -31,4 +31,4 @@ async function ProductsPage({ params }: ProductsPageProps) {
   );
 }
 
-export default ProductsPage;
+export default ProductsPageMain;
