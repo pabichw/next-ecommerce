@@ -1,15 +1,11 @@
 import { ReactNode } from "react";
 
-type ProductLayoutProps = {
-  children: ReactNode;
+type ProductPageLayoutProps = {
+	children: ReactNode;
 };
 
-export function generateStaticParams() {
-  return Array.from({ length: 10 }).map((_, idx) => ({ page: idx.toString() }));
+function ProductsPageLayout({ children }: ProductPageLayoutProps) {
+	return <>{children}</>;
 }
 
-function ProductsLayout({ children }: ProductLayoutProps) {
-  return <>{children}</>;
-}
-
-export default ProductsLayout;
+export default ProductsPageLayout;
