@@ -1,7 +1,7 @@
-import { Metadata } from "next";
-import Image from "next/image";
 import { getProductById } from "@/api/products";
 import { formatMoney } from "@/utils/money";
+import { Metadata } from "next";
+import Image from "next/image";
 
 type ProductPageProps = {
 	params: {

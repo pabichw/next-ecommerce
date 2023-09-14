@@ -11,7 +11,12 @@ function Navbar() {
 			<ActiveLink className={linkCls} activeClassName={activeLinkCls} href="/">
 				Home
 			</ActiveLink>
-			<ActiveLink className={linkCls} activeClassName={activeLinkCls} href="/products" notExact>
+			<ActiveLink
+				className={linkCls}
+				activeClassName={activeLinkCls}
+				href="/products/1"
+				exact={false}
+			>
 				All
 			</ActiveLink>
 		</nav>

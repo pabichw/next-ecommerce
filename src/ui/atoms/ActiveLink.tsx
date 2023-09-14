@@ -6,23 +6,23 @@ import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-type ActiveLinkProps = {
-	href: Route;
+type ActiveLinkProps<T extends string> = {
+	href: Route<T>;
 	activeClassName: string;
 	className: string;
 	children: ReactNode;
-	notExact?: boolean;
+	exact?: boolean;
 };
 
-function ActiveLink({
+function ActiveLink<T extends string>({
 	className: extendCls,
 	activeClassName,
 	href,
 	children,
-	notExact,
-}: ActiveLinkProps) {
+	exact = true,
+}: ActiveLinkProps<T>) {
 	const pathname = usePathname();
-	const isActive = notExact ? pathname.includes(href) : pathname === href;
+	const isActive = exact ? pathname === href : pathname.includes(href);
 
 	return (
 		<Link

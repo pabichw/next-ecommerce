@@ -1,9 +1,20 @@
 import { getProducts } from "@/api/products";
 import { type Product } from "@/types";
+import Pagination from "@/ui/organisms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 
-async function Page() {
-	const products = await getProducts();
+type ProductsPageProps = {
+	params: {
+		page: string;
+	};
+};
+
+export function generateStaticParams() {
+	return Array.from({ length: 10 }).map((_, idx) => ({ page: idx.toString() }));
+}
+
+async function ProductsPage({ params }: ProductsPageProps) {
+	const products = await getProducts({ page: params.page });
 
 	const formattedProducts: Product[] = products.map((product) => ({
 		id: product.id,
@@ -18,10 +29,10 @@ async function Page() {
 
 	return (
 		<main className="flex flex-col gap-20">
-			<h1 className="text-3xl font-bold">Product list page</h1>
 			<ProductList products={formattedProducts} />
+			<Pagination resourcePath={"/products"} totalPages={10} />
 		</main>
 	);
 }
 
-export default Page;
+export default ProductsPage;
