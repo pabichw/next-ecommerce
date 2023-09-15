@@ -18,6 +18,13 @@
 		"import/no-cycle": "error",
 		"import/no-default-export": "error",
 		"no-empty-pattern": "off",
+		"no-restricted-imports": [
+			"error",
+			{
+				"name": "next/router",
+				"message": "Deprecated. Please use next/navigation instead."
+			}
+		],
 		"@typescript-eslint/return-await": ["error", "in-try-catch"],
 		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-unused-vars": [
