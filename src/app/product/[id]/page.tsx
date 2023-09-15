@@ -1,7 +1,7 @@
-import { Metadata } from "next";
-import Image from "next/image";
 import { getProductById } from "@/api/products";
 import { formatMoney } from "@/utils/money";
+import { Metadata } from "next";
+import Image from "next/image";
 
 type ProductPageProps = {
 	params: {
@@ -39,7 +39,7 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 	};
 
 	return (
-		<main>
+		<main className="column-wrapper">
 			<h1>{product.name}</h1>
 			<h4 className="font-bold">{formatMoney(product.price)}</h4>
 			<Image width={400} height={400} src={product.coverImage.src} alt={product.coverImage.alt} />

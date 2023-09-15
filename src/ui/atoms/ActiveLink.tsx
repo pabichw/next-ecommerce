@@ -27,7 +27,11 @@ function ActiveLink<T extends string>({
 	return (
 		<Link
 			href={href}
-			className={twMerge("hover:underline", extendCls, isActive && activeClassName)}
+			className={twMerge(
+				"inline-flex items-center gap-2 hover:underline",
+				extendCls,
+				isActive && activeClassName,
+			)}
 		>
 			{children}
 		</Link>

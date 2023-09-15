@@ -30,7 +30,7 @@ async function ProductsPage({ params }: ProductsPageProps) {
 	}));
 
 	return (
-		<main className="flex flex-col gap-20">
+		<main className="column-wrapper flex flex-col gap-20">
 			<ProductList products={formattedProducts} />
 			<Pagination resourcePath={"/products"} totalPages={10} />
 		</main>

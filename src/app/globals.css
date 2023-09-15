@@ -10,7 +10,21 @@ body {
 }
 
 main {
-	max-width: 1480px;
-	margin-inline: auto;
-	padding: theme("spacing.8");
+	min-height: 100vh;
+}
+
+@layer components {
+	.column-wrapper {
+		max-width: 1480px;
+		margin-inline: auto;
+		padding: theme("spacing.8");
+	}
+}
+
+@layer utilities {
+	.center-absolute {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 }
