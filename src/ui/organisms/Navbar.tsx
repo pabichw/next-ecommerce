@@ -1,11 +1,11 @@
 "use client";
 
-import ActiveLink from "@/ui/atoms/ActiveLink";
-import Logo from "@/ui/atoms/Logo";
-import Minicart from "@/ui/molecules/Minicart";
 import { HomeIcon, ListChecks } from "lucide-react";
 import { Route } from "next";
 import { useEffect, useState } from "react";
+import ActiveLink from "@/ui/atoms/ActiveLink";
+import Logo from "@/ui/atoms/Logo";
+import Minicart from "@/ui/molecules/Minicart";
 
 function Navbar() {
 	const [minified, setMinified] = useState(false);
@@ -45,11 +45,11 @@ function Navbar() {
 	}`;
 
 	return (
-		<div className="sticky top-0 z-10 bg-neutral-100 shadow w-full flex align-center justify-between gap-8">
+		<div className="fixed top-0 z-10 bg-neutral-100 shadow w-full flex align-center justify-between gap-8">
 			<nav
 				role="navigation"
 				className={`column-wrapper mx-auto ${
-					minified ? "py-1" : "py-1"
+					minified ? "py-1" : "py-2"
 				} flex items-center justify-between w-full transition-[padding]`}
 			>
 				<div
