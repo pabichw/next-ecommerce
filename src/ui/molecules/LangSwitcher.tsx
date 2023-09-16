@@ -1,18 +1,18 @@
 "use client";
 
-import { ShoppingCart } from "lucide-react";
+import { Globe2 } from "lucide-react";
 import Touchable from "@/ui/atoms/Touchable";
 
-function Minicart() {
+function LangSwitcher() {
 	const onClick = (): void => {
 		console.log("click");
 	};
 
 	return (
 		<Touchable onClick={onClick}>
-			<ShoppingCart size={20} strokeWidth={2} />
+			<Globe2 size={20} strokeWidth={2} />
 		</Touchable>
 	);
 }
 
-export default Minicart;
+export default LangSwitcher;

@@ -1,18 +1,18 @@
 "use client";
 
-import { ShoppingCart } from "lucide-react";
+import { User } from "lucide-react";
 import Touchable from "@/ui/atoms/Touchable";
 
-function Minicart() {
+function Auth() {
 	const onClick = (): void => {
 		console.log("click");
 	};
 
 	return (
 		<Touchable onClick={onClick}>
-			<ShoppingCart size={20} strokeWidth={2} />
+			<User size={20} strokeWidth={2} />
 		</Touchable>
 	);
 }
 
-export default Minicart;
+export default Auth;

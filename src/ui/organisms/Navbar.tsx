@@ -5,6 +5,8 @@ import { Route } from "next";
 import { useEffect, useState } from "react";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 import Logo from "@/ui/atoms/Logo";
+import Auth from "@/ui/molecules/Auth";
+import LangSwitcher from "@/ui/molecules/LangSwitcher";
 import Minicart from "@/ui/molecules/Minicart";
 
 function Navbar() {
@@ -49,11 +51,13 @@ function Navbar() {
 			<nav
 				role="navigation"
 				className={`column-wrapper mx-auto ${
-					minified ? "py-1" : "py-2"
+					minified ? "py-[0.25rem]" : "py-2"
 				} flex items-center justify-between w-full transition-[padding]`}
 			>
 				<div
-					className={`scale-100 transition transition-[transform] ${minified ? "scale-75" : ""}`}
+					className={`scale-100 grayscale-0 transition transition-[transform,filter] ${
+						minified ? "scale-[0.7] !grayscale" : ""
+					}`}
 				>
 					<Logo />
 				</div>
@@ -72,7 +76,9 @@ function Navbar() {
 						<span className={linkTextCls}>All</span>
 					</ActiveLink>
 				</div>
-				<div className="flex items-center">
+				<div className="flex gap-5 items-center">
+					<LangSwitcher />
+					<Auth />
 					<Minicart />
 				</div>
 			</nav>

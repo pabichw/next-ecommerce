@@ -5,7 +5,7 @@ function Logo() {
 	return (
 		<Link href="/">
 			<Image
-				className="grayscale transition transition-[filter] hover:grayscale-0"
+				className="transition transition-[filter] hover:grayscale-0"
 				src="/shopify_logo.svg"
 				alt="shop"
 				width={50}
