@@ -5,7 +5,7 @@ export const ProductList = ({ products }: { products: Product[] }) => {
 	return (
 		<ul
 			data-testid="products-list"
-			className="grid grdi-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-8"
+			className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-5 mx-auto"
 		>
 			{products.map((product) => (
 				<ProductListItem key={product.name} product={product} />

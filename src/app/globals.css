@@ -6,7 +6,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	background-color: theme("colors.slate.100");
+	background-color: theme("colors.neutral.100");
 }
 
 main {

@@ -12,7 +12,7 @@ function Touchable({ children, onClick }: TouchableProps) {
       relative z-1
       after:content-[' * '] after:block after:center-absolute after:absolute after:inset-0 after:z-[-1]
       after:inline-block after:min-w-full after:min-h-full after:p-4 after:rounded-full after:transition-colors
-      hover:after:bg-slate-300"
+      hover:after:bg-neutral-300"
 			onClick={onClick}
 		>
 			{children}

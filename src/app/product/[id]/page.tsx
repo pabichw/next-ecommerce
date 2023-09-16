@@ -39,11 +39,23 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 	};
 
 	return (
-		<main className="column-wrapper">
-			<h1>{product.name}</h1>
-			<h4 className="font-bold">{formatMoney(product.price)}</h4>
-			<Image width={400} height={400} src={product.coverImage.src} alt={product.coverImage.alt} />
-			<p>{product.description}</p>
+		<main className="column-wrapper px-32 pt-28">
+			<div className="flex gap-8 space-between">
+				<div className="flex-1 p-5 bg-neutral-200 rounded-lg">
+					<Image
+						className="mx-auto"
+						width={400}
+						height={400}
+						src={product.coverImage.src}
+						alt={product.coverImage.alt}
+					/>
+				</div>
+				<div className="flex-1 flex flex-col gap-2 py-5">
+					<h1 className="font-bold text-xl">{product.name}</h1>
+					<h4 className="font-bold">{formatMoney(product.price)}</h4>
+					<p>{product.description}</p>
+				</div>
+			</div>
 		</main>
 	);
 }

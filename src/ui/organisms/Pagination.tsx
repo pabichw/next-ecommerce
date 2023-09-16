@@ -8,7 +8,7 @@ type PaginationProps = {
 
 function Pagination({ resourcePath, totalPages }: PaginationProps) {
 	return (
-		<nav aria-label="Pagination" className="flex gap-2">
+		<nav aria-label="Pagination" className="flex gap-2 mx-auto">
 			{Array.from({ length: totalPages }).map((_, idx) => {
 				const realIdx = idx + 1;
 
