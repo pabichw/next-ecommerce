@@ -19,6 +19,8 @@ main {
 		max-width: 1480px;
 		margin-inline: auto;
 		padding: theme("spacing.8");
+
+
 	}
 }
 

@@ -1,0 +1,12 @@
+
+query ProductsGetList($pagination: Pagination!) {
+  product(pagination: $pagination) {
+    id
+    name
+    price
+    image
+    category {
+      name
+    }
+  }
+}

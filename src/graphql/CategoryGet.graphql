@@ -1,0 +1,14 @@
+
+query CategoryGet($slug: String, $pagination: Pagination!) {
+  category(slug: $slug, pagination: $pagination) {
+    id
+    name
+    slug
+    product {
+      id
+      name
+      price
+      image
+    }
+  }
+}
