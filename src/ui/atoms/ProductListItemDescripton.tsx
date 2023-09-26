@@ -1,4 +1,4 @@
-import type { Product } from "@/types";
+import { Product } from "@/gql/graphql";
 import { formatMoney } from "@/utils/money";
 
 type ProductListItemDescriptionProps = {

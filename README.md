@@ -1,7 +1,9 @@
 ## Intro
+
 An e-commerce platform created using Next.js 13 as a part of Next13 Masters course.
 
 ## Demo
+
 Visit [https://shop.lachu.world](http://shop.lachu.world)
 
 ## Dev

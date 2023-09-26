@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
 type CategoriesPageLayoutProps = {
-  children: ReactNode;
+	children: ReactNode;
 };
 
 function CategoriesPageLayout({ children }: CategoriesPageLayoutProps) {
-  return <>{children}</>;
+	return <>{children}</>;
 }
 
 export default CategoriesPageLayout;

@@ -1,8 +1,12 @@
-
 query CategoryGetList($pagination: Pagination!) {
-  category(pagination: $pagination) {
-    id
-    name
-    slug
-  }
+	category(pagination: $pagination) {
+		id
+		name
+		slug
+		product {
+			name
+			id
+			slug
+		}
+	}
 }

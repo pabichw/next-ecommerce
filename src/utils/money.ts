@@ -1,5 +1,3 @@
-import type { Money } from "@/types";
-
-export const formatMoney = (money: Money) => {
-	return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(money.value);
+export const formatMoney = (value: number): string => {
+	return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
 };
