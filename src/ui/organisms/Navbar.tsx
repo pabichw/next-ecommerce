@@ -1,6 +1,6 @@
 "use client";
 
-import { HomeIcon, ListChecks } from "lucide-react";
+import { HomeIcon, LayersIcon, ListChecks } from "lucide-react";
 import { Route } from "next";
 import { useEffect, useState } from "react";
 import ActiveLink from "@/ui/atoms/ActiveLink";
@@ -87,6 +87,7 @@ function Navbar({ categories }: NavbarProps) {
 							href={category.url as Route}
 							exact={false}
 						>
+							<LayersIcon className={iconCls} size={17} />
 							<span className={linkTextCls}>{category.label}</span>
 						</ActiveLink>
 					))}

@@ -6,7 +6,6 @@ query CollectionGet($name: String) {
 			id
 			name
 			image
-			description
 			price
 		}
 	}

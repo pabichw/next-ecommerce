@@ -3,7 +3,9 @@ import Collection from "@/ui/organisms/Collection";
 export default function Home() {
 	return (
 		<main className="column-wrapper">
-			<Collection name="My list Music" />
+			<div data-testid="related-products">
+				<Collection name="Suggested products collection" />
+			</div>
 		</main>
 	);
 }
