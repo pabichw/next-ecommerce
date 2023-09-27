@@ -23,6 +23,12 @@ export type Category = {
   slug: Scalars['String']['output'];
 };
 
+export type Collection = {
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  product?: Maybe<Array<Maybe<Product>>>;
+};
+
 export type Pagination = {
   page: Scalars['Int']['input'];
   pageSize: Scalars['Int']['input'];
@@ -30,6 +36,7 @@ export type Pagination = {
 
 export type Product = {
   category?: Maybe<Array<Maybe<Category>>>;
+  collection?: Maybe<Array<Maybe<Collection>>>;
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image: Scalars['String']['output'];
@@ -40,6 +47,7 @@ export type Product = {
 
 export type Query = {
   category: Array<Maybe<Category>>;
+  collection: Array<Maybe<Collection>>;
   product: Array<Maybe<Product>>;
 };
 
@@ -47,6 +55,11 @@ export type Query = {
 export type QueryCategoryArgs = {
   pagination?: InputMaybe<Pagination>;
   slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryCollectionArgs = {
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -69,6 +82,13 @@ export type CategoryGetListQueryVariables = Exact<{
 
 
 export type CategoryGetListQuery = { category: Array<{ id: string, name: string, slug: string, product?: Array<{ name: string, id: string, slug: string } | null> | null } | null> };
+
+export type CollectionGetQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type CollectionGetQuery = { collection: Array<{ id: string, name: string, product?: Array<{ name: string, image: string, description: string } | null> | null } | null> };
 
 export type ProductGetQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -128,6 +148,19 @@ export const CategoryGetListDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CategoryGetListQuery, CategoryGetListQueryVariables>;
+export const CollectionGetDocument = new TypedDocumentString(`
+    query CollectionGet($name: String) {
+  collection(name: $name) {
+    id
+    name
+    product {
+      name
+      image
+      description
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CollectionGetQuery, CollectionGetQueryVariables>;
 export const ProductGetDocument = new TypedDocumentString(`
     query ProductGet($id: ID!) {
   product(id: $id) {

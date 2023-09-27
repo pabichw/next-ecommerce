@@ -9,7 +9,7 @@ export const ProductList = ({ products }: { products: Maybe<Product>[] }) => {
 	return (
 		<ul
 			data-testid="products-list"
-			className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-5 mx-auto"
+			className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-5 mx-auto"
 		>
 			{products.map((product) => (
 				<ProductListItem key={product?.name} product={product} />

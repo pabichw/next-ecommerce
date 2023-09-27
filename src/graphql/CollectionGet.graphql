@@ -1,0 +1,13 @@
+query CollectionGet($name: String) {
+	collection(name: $name) {
+		id
+		name
+		product {
+			id
+			name
+			image
+			description
+			price
+		}
+	}
+}

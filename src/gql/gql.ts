@@ -16,6 +16,7 @@ import * as types from './graphql';
 const documents = {
     "query CategoryGet($slug: String, $pagination: Pagination!) {\n  category(slug: $slug, pagination: $pagination) {\n    id\n    name\n    slug\n    product {\n      id\n      name\n      price\n      image\n    }\n  }\n}": types.CategoryGetDocument,
     "query CategoryGetList($pagination: Pagination!) {\n  category(pagination: $pagination) {\n    id\n    name\n    slug\n    product {\n      name\n      id\n      slug\n    }\n  }\n}": types.CategoryGetListDocument,
+    "query CollectionGet($name: String) {\n  collection(name: $name) {\n    id\n    name\n    product {\n      name\n      image\n      description\n    }\n  }\n}": types.CollectionGetDocument,
     "query ProductGet($id: ID!) {\n  product(id: $id) {\n    id\n    name\n    price\n    image\n    category {\n      name\n      slug\n    }\n  }\n}": types.ProductGetDocument,
     "query ProductsGetList($pagination: Pagination!) {\n  product(pagination: $pagination) {\n    id\n    name\n    price\n    image\n    category {\n      name\n    }\n  }\n}": types.ProductsGetListDocument,
 };
@@ -28,6 +29,10 @@ export function graphql(source: "query CategoryGet($slug: String, $pagination: P
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query CategoryGetList($pagination: Pagination!) {\n  category(pagination: $pagination) {\n    id\n    name\n    slug\n    product {\n      name\n      id\n      slug\n    }\n  }\n}"): typeof import('./graphql').CategoryGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CollectionGet($name: String) {\n  collection(name: $name) {\n    id\n    name\n    product {\n      name\n      image\n      description\n    }\n  }\n}"): typeof import('./graphql').CollectionGetDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
