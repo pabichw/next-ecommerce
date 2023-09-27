@@ -8,6 +8,7 @@ import Logo from "@/ui/atoms/Logo";
 import Auth from "@/ui/molecules/Auth";
 import LangSwitcher from "@/ui/molecules/LangSwitcher";
 import Minicart from "@/ui/molecules/Minicart";
+import { SearchInput } from "@/ui/organisms/SearchInput";
 
 type NavbarProps = {
 	categories?: Array<{ url: string; label: string }>;
@@ -91,6 +92,9 @@ function Navbar({ categories }: NavbarProps) {
 							<span className={linkTextCls}>{category.label}</span>
 						</ActiveLink>
 					))}
+				</div>
+				<div className="mx-3">
+					<SearchInput />
 				</div>
 				<div className="flex gap-5 items-center">
 					<LangSwitcher />

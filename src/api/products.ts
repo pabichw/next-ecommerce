@@ -18,3 +18,18 @@ export async function getProductById(id: string): Promise<Product> {
 
 	return products[0] as Product;
 }
+
+export async function searchProductByName({
+	name,
+	page,
+}: {
+	name: string;
+	page: string;
+}): Promise<Product[]> {
+	const { product: products } = await executeGraphql(ProductsGetListDocument, {
+		name,
+		pagination: { page: Number(page), pageSize: 10 },
+	});
+
+	return products as Product[];
+}

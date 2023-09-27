@@ -20,7 +20,7 @@ const documents = {
 		types.CollectionGetDocument,
 	"query ProductGet($id: ID!) {\n  product(id: $id) {\n    id\n    name\n    price\n    image\n    category {\n      name\n      slug\n    }\n  }\n}":
 		types.ProductGetDocument,
-	"query ProductsGetList($pagination: Pagination!) {\n  product(pagination: $pagination) {\n    id\n    name\n    price\n    image\n    category {\n      name\n    }\n  }\n}":
+	"query ProductsGetList($name: String, $pagination: Pagination!) {\n  product(name: $name, pagination: $pagination) {\n    id\n    name\n    price\n    image\n    category {\n      name\n    }\n  }\n}":
 		types.ProductsGetListDocument,
 };
 
@@ -52,7 +52,7 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-	source: "query ProductsGetList($pagination: Pagination!) {\n  product(pagination: $pagination) {\n    id\n    name\n    price\n    image\n    category {\n      name\n    }\n  }\n}",
+	source: "query ProductsGetList($name: String, $pagination: Pagination!) {\n  product(name: $name, pagination: $pagination) {\n    id\n    name\n    price\n    image\n    category {\n      name\n    }\n  }\n}",
 ): typeof import("./graphql").ProductsGetListDocument;
 
 export function graphql(source: string) {

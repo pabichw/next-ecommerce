@@ -67,6 +67,7 @@ export type QueryCollectionArgs = {
 
 export type QueryProductArgs = {
 	id?: InputMaybe<Scalars["ID"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
 	pagination?: InputMaybe<Pagination>;
 };
 
@@ -124,6 +125,7 @@ export type ProductGetQuery = {
 };
 
 export type ProductsGetListQueryVariables = Exact<{
+	name?: InputMaybe<Scalars["String"]["input"]>;
 	pagination: Pagination;
 }>;
 
@@ -213,8 +215,8 @@ export const ProductGetDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<ProductGetQuery, ProductGetQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($pagination: Pagination!) {
-  product(pagination: $pagination) {
+    query ProductsGetList($name: String, $pagination: Pagination!) {
+  product(name: $name, pagination: $pagination) {
     id
     name
     price
