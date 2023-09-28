@@ -4,6 +4,7 @@ query ProductGet($id: ID!) {
 		name
 		price
 		image
+		configurableAttributes
 		category {
 			name
 			slug

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { getProductById } from "@/api/products";
+import ProductConfigurator from "@/ui/organisms/ProductConfigurator";
 import { formatMoney } from "@/utils/money";
 
 type ProductPageProps = {
@@ -43,7 +44,8 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 				<div className="flex-1 flex flex-col gap-2 py-5">
 					<h1 className="font-bold text-xl">{product.name}</h1>
 					<h4 className="font-bold">{formatMoney(product.price)}</h4>
-					<p>Lorem mopsum</p>
+					<ProductConfigurator product={product} />
+					<p>{product.description}</p>
 				</div>
 			</div>
 		</main>
