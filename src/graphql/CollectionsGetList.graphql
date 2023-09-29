@@ -1,0 +1,12 @@
+query CollectionsGetList {
+	collection {
+		id
+		name
+		product {
+			id
+			name
+			image
+			price
+		}
+	}
+}

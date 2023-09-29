@@ -102,6 +102,11 @@ export type CollectionGetQueryVariables = Exact<{
 
 export type CollectionGetQuery = { collection: Array<{ id: string, name: string, product?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
 
+export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CollectionsGetListQuery = { collection: Array<{ id: string, name: string, product?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
+
 export type ProductGetQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -187,6 +192,20 @@ export const CollectionGetDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CollectionGetQuery, CollectionGetQueryVariables>;
+export const CollectionsGetListDocument = new TypedDocumentString(`
+    query CollectionsGetList {
+  collection {
+    id
+    name
+    product {
+      id
+      name
+      image
+      price
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
 export const ProductGetDocument = new TypedDocumentString(`
     query ProductGet($id: ID!) {
   product(id: $id) {

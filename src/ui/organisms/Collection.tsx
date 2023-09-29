@@ -10,7 +10,9 @@ async function Collection({ name }: CollectionProps) {
 
 	return (
 		<div>
-			<h2 className="text-2xl mb-4">{name}</h2>
+			<h2 role="heading" className="text-2xl mb-4">
+				{name}
+			</h2>
 			<div>
 				{collection?.product ? (
 					<ProductList products={collection.product} />
