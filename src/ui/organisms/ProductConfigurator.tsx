@@ -45,7 +45,7 @@ function AttributeValue({
 	return (
 		<div
 			className={twMerge(
-				"min-h-full min-w-12 cursor-pointer border-white border-2 rounded-md hover:border-sky-300 transition-colors px-2",
+				"min-h-full min-w-12 cursor-pointer border-slate-200 border-2 rounded-md hover:border-sky-300 transition-colors px-2",
 				type === AttributeTypes.COLOR && "w-10 h-10 ",
 				isActive && "border-sky-600",
 			)}
@@ -112,7 +112,7 @@ function ProductConfigurator({ product }: ProductConfiguratorProps) {
 	};
 
 	return (
-		<div className="flex flex-col gap-4 bg-slate-200 rounded-md p-3">
+		<div className="flex flex-col gap-4 bg-white rounded-md p-3">
 			{attributesBlobToAttributes(product.configurableAttributes)?.map((attribute) => (
 				<ConfiguratorAttribute
 					key={`attr-${attribute.name}`}
