@@ -44,8 +44,10 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 				<div className="flex-1 flex flex-col gap-2 py-5">
 					<h1 className="font-bold text-xl">{product.name}</h1>
 					<h4 className="font-bold">{formatMoney(product.price)}</h4>
+					{product.description && (
+						<p className="mt-5 p-2 bg-neutral-200 rounded-lg">{product.description}</p>
+					)}
 					<ProductConfigurator product={product} />
-					<p>{product.description}</p>
 				</div>
 			</div>
 		</main>

@@ -107,7 +107,7 @@ export type ProductGetQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null } | null> };
+export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null } | null> };
 
 export type ProductsGetListQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -194,6 +194,7 @@ export const ProductGetDocument = new TypedDocumentString(`
     name
     price
     image
+    description
     configurableAttributes
     category {
       name

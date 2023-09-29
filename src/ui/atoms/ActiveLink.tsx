@@ -27,13 +27,11 @@ function ActiveLink<T extends string>({
 	return (
 		<Link
 			href={href}
-			className={twMerge(
-				"inline-flex items-center gap-2 hover:underline",
-				extendCls,
-				isActive && activeClassName,
-			)}
+			className={twMerge("hover:underline", extendCls, isActive && activeClassName)}
 		>
-			{children}
+			<span className="inline-flex items-center gap-2" aria-current={isActive ? "page" : undefined}>
+				{children}
+			</span>
 		</Link>
 	);
 }
