@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getCategoryBySlug } from "@/api/categories";
 import Pagination from "@/ui/organisms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
@@ -13,6 +14,27 @@ export function generateStaticParams() {
 	return Array.from({ length: 1 }).map((_, idx) => {
 		return { page: (idx + 1).toString() };
 	});
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { page: string; slug: string };
+}): Promise<Metadata> {
+	const result = await getCategoryBySlug({
+		slug: params.slug,
+		page: Number(params.page),
+		pageSize: 10,
+	});
+
+	const category = result?.data[0];
+
+	return {
+		title: `${category?.name} - online shop`,
+		openGraph: {
+			title: `${category?.name} - online shop`,
+		},
+	};
 }
 
 async function CategoryPage({ params }: CategoryPageProps) {

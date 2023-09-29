@@ -3,7 +3,7 @@
 import { Route } from "next";
 import { useRouter } from "next/navigation";
 import { debounce } from "radash";
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 
 import TextField from "../atoms/TextField";
 
@@ -11,15 +11,28 @@ export function SearchInput() {
 	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const { push } = useRouter();
 
-	const handleSearch = (input: ChangeEvent<HTMLInputElement>) => {
-		push(`/search?query=${input.target.value}` as Route);
+	const handleSearch = (query: string): void => {
+		push(`/search?query=${query}` as Route);
 	};
 
-	const debouncedHandleSearch = debounce({ delay: 500 }, handleSearch);
+	const debouncedHandleSearch = debounce({ delay: 500 }, (e: ChangeEvent<HTMLInputElement>) =>
+		handleSearch(e.target.value),
+	);
 
 	return (
 		<div>
-			<TextField placeholder="Search..." onChange={debouncedHandleSearch} />
+			<form
+				onSubmit={(e: FormEvent<HTMLFormElement>) => {
+					debugger;
+					e.preventDefault();
+					/* eslint-disable */
+					// @ts-ignore
+					handleSearch(e.target[0].value);
+					/* eslint-enable */
+				}}
+			>
+				<TextField placeholder="Search..." onChange={debouncedHandleSearch} role="searchbox" />
+			</form>
 		</div>
 	);
 }
