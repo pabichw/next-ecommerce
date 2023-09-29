@@ -1,13 +1,19 @@
-query CategoryGet($slug: String, $pagination: Pagination!) {
+query CategoryGet($slug: String, $pagination: PaginationInput!) {
 	category(slug: $slug, pagination: $pagination) {
-		id
-		name
-		slug
-		product {
+		data {
 			id
 			name
-			price
-			image
+			slug
+			product {
+				id
+				name
+				price
+				image
+			}
+		}
+		pagination {
+			pages
+			total
 		}
 	}
 }

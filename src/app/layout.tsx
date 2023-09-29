@@ -22,7 +22,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 			<Analytics />
 			<body className={inter.className}>
 				<Navbar
-					categories={categories?.map((category) => ({
+					categories={categories?.data?.map((category) => ({
 						url: `/categories/${category.slug}`,
 						label: category.name,
 					}))}

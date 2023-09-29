@@ -6,3 +6,12 @@ export type ConfigurableAttribute = {
 	name: string;
 	values: string[];
 };
+
+export type PaginatedResource<T> = {
+	data: Array<T>;
+	pagination: {
+		page: number;
+		pages: number;
+		total: number;
+	};
+};

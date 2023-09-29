@@ -16,11 +16,13 @@ export function generateStaticParams() {
 }
 
 async function CategoryPage({ params }: CategoryPageProps) {
-	const category = await getCategoryBySlug({
+	const result = await getCategoryBySlug({
 		slug: params.slug,
 		page: Number(params.page),
 		pageSize: 10,
 	});
+
+	const category = result?.data[0];
 
 	if (!category) {
 		return <span>Yikes. No such category</span>;
@@ -34,7 +36,10 @@ async function CategoryPage({ params }: CategoryPageProps) {
 			) : (
 				<span>No products</span>
 			)}
-			<Pagination resourcePath={`/categories/${params.slug}`} totalPages={10} />
+			<Pagination
+				resourcePath={`/categories/${params.slug}`}
+				totalPages={result.pagination?.pages || 1}
+			/>
 		</main>
 	);
 }

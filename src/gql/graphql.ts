@@ -23,6 +23,11 @@ export type Category = {
   slug: Scalars['String']['output'];
 };
 
+export type CategoryWithPagination = {
+  data: Array<Category>;
+  pagination?: Maybe<Pagination>;
+};
+
 export type Collection = {
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
@@ -30,6 +35,11 @@ export type Collection = {
 };
 
 export type Pagination = {
+  pages: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type PaginationInput = {
   page: Scalars['Int']['input'];
   pageSize: Scalars['Int']['input'];
 };
@@ -47,14 +57,14 @@ export type Product = {
 };
 
 export type Query = {
-  category: Array<Maybe<Category>>;
+  category?: Maybe<CategoryWithPagination>;
   collection: Array<Maybe<Collection>>;
   product: Array<Maybe<Product>>;
 };
 
 
 export type QueryCategoryArgs = {
-  pagination?: InputMaybe<Pagination>;
+  pagination?: InputMaybe<PaginationInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -67,23 +77,23 @@ export type QueryCollectionArgs = {
 export type QueryProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
-  pagination?: InputMaybe<Pagination>;
+  pagination?: InputMaybe<PaginationInput>;
 };
 
 export type CategoryGetQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
-  pagination: Pagination;
+  pagination: PaginationInput;
 }>;
 
 
-export type CategoryGetQuery = { category: Array<{ id: string, name: string, slug: string, product?: Array<{ id: string, name: string, price: number, image: string } | null> | null } | null> };
+export type CategoryGetQuery = { category?: { data: Array<{ id: string, name: string, slug: string, product?: Array<{ id: string, name: string, price: number, image: string } | null> | null }>, pagination?: { pages: number, total: number } | null } | null };
 
 export type CategoryGetListQueryVariables = Exact<{
-  pagination: Pagination;
+  pagination: PaginationInput;
 }>;
 
 
-export type CategoryGetListQuery = { category: Array<{ id: string, name: string, slug: string, product?: Array<{ name: string, id: string, slug: string } | null> | null } | null> };
+export type CategoryGetListQuery = { category?: { data: Array<{ id: string, name: string, slug: string, product?: Array<{ name: string, id: string, slug: string } | null> | null }>, pagination?: { pages: number, total: number } | null } | null };
 
 export type CollectionGetQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -101,7 +111,7 @@ export type ProductGetQuery = { product: Array<{ id: string, name: string, price
 
 export type ProductsGetListQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
-  pagination: Pagination;
+  pagination: PaginationInput;
 }>;
 
 
@@ -123,30 +133,42 @@ export class TypedDocumentString<TResult, TVariables>
 }
 
 export const CategoryGetDocument = new TypedDocumentString(`
-    query CategoryGet($slug: String, $pagination: Pagination!) {
+    query CategoryGet($slug: String, $pagination: PaginationInput!) {
   category(slug: $slug, pagination: $pagination) {
-    id
-    name
-    slug
-    product {
+    data {
       id
       name
-      price
-      image
+      slug
+      product {
+        id
+        name
+        price
+        image
+      }
+    }
+    pagination {
+      pages
+      total
     }
   }
 }
     `) as unknown as TypedDocumentString<CategoryGetQuery, CategoryGetQueryVariables>;
 export const CategoryGetListDocument = new TypedDocumentString(`
-    query CategoryGetList($pagination: Pagination!) {
+    query CategoryGetList($pagination: PaginationInput!) {
   category(pagination: $pagination) {
-    id
-    name
-    slug
-    product {
-      name
+    data {
       id
+      name
       slug
+      product {
+        name
+        id
+        slug
+      }
+    }
+    pagination {
+      pages
+      total
     }
   }
 }
@@ -181,7 +203,7 @@ export const ProductGetDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<ProductGetQuery, ProductGetQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($name: String, $pagination: Pagination!) {
+    query ProductsGetList($name: String, $pagination: PaginationInput!) {
   product(name: $name, pagination: $pagination) {
     id
     name

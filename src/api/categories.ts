@@ -1,19 +1,23 @@
-import { Category, CategoryGetDocument, CategoryGetListDocument } from "@/gql/graphql";
+import {
+	CategoryGetDocument,
+	CategoryGetListDocument,
+	CategoryWithPagination,
+} from "@/gql/graphql";
 import { executeGraphql } from "@/utils/gql";
 
 export async function getCategories(options: {
 	page: string | number;
 	pageSize: string | number;
-}): Promise<Category[] | null> {
-	const data = await executeGraphql(CategoryGetListDocument, {
+}): Promise<CategoryWithPagination | null> {
+	const { category } = await executeGraphql(CategoryGetListDocument, {
 		pagination: { page: Number(options.page), pageSize: Number(options.pageSize) },
 	});
 
-	if (!data.category) {
+	if (!category) {
 		return null;
 	}
 
-	return data.category as Category[];
+	return category as CategoryWithPagination;
 }
 
 export const getCategoryBySlug = async ({
@@ -24,7 +28,7 @@ export const getCategoryBySlug = async ({
 	slug: string;
 	page: number;
 	pageSize: number;
-}): Promise<Category | null> => {
+}): Promise<CategoryWithPagination | null> => {
 	const { category: categories } = await executeGraphql(CategoryGetDocument, {
 		slug,
 		pagination: { page, pageSize },
@@ -34,5 +38,5 @@ export const getCategoryBySlug = async ({
 		return null;
 	}
 
-	return categories[0] as Category;
+	return categories as CategoryWithPagination;
 };

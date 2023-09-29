@@ -1,12 +1,18 @@
-query CategoryGetList($pagination: Pagination!) {
+query CategoryGetList($pagination: PaginationInput!) {
 	category(pagination: $pagination) {
-		id
-		name
-		slug
-		product {
-			name
+		data {
 			id
+			name
 			slug
+			product {
+				name
+				id
+				slug
+			}
+		}
+		pagination {
+			pages
+			total
 		}
 	}
 }
