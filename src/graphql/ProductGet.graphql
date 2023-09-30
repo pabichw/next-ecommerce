@@ -10,5 +10,11 @@ query ProductGet($id: ID!) {
 			name
 			slug
 		}
+		relatedProduct {
+			id
+			name
+			image
+			price
+		}
 	}
 }

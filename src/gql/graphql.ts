@@ -53,6 +53,7 @@ export type Product = {
   image: Scalars['String']['output'];
   name: Scalars['String']['output'];
   price: Scalars['Int']['output'];
+  relatedProduct?: Maybe<Array<Maybe<Product>>>;
   slug: Scalars['String']['output'];
 };
 
@@ -112,7 +113,7 @@ export type ProductGetQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null } | null> };
+export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null, relatedProduct?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
 
 export type ProductsGetListQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -218,6 +219,12 @@ export const ProductGetDocument = new TypedDocumentString(`
     category {
       name
       slug
+    }
+    relatedProduct {
+      id
+      name
+      image
+      price
     }
   }
 }

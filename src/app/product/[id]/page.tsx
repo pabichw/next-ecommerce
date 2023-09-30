@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getProductById } from "@/api/products";
 import ProductConfigurator from "@/ui/organisms/ProductConfigurator";
+import { RelatedProduct } from "@/ui/organisms/RelatedProducts";
 import { formatMoney } from "@/utils/money";
 
 type ProductPageProps = {
@@ -50,6 +51,11 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 					<ProductConfigurator product={product} />
 				</div>
 			</div>
+			{product.relatedProduct && (
+				<div className="mt-10 p-5 bg-white rounded-lg">
+					<RelatedProduct products={product.relatedProduct} />
+				</div>
+			)}
 		</main>
 	);
 }
