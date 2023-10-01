@@ -2,9 +2,13 @@ import { Product, ProductGetDocument, ProductsGetListDocument } from "@/gql/grap
 import { executeGraphql } from "@/utils/gql";
 
 export async function getProducts({ page }: { page: string }): Promise<Product[] | null> {
-	const { product: products } = await executeGraphql(ProductsGetListDocument, {
-		pagination: { page: Number(page), pageSize: 10 },
-	}, { tags: ['products'] });
+	const { product: products } = await executeGraphql(
+		ProductsGetListDocument,
+		{
+			pagination: { page: Number(page), pageSize: 10 },
+		},
+		{ tags: ["products"] },
+	);
 
 	if (!products) {
 		return null;
@@ -14,7 +18,7 @@ export async function getProducts({ page }: { page: string }): Promise<Product[]
 }
 
 export async function getProductById(id: string): Promise<Product> {
-	const { product: products } = await executeGraphql(ProductGetDocument, { id } );
+	const { product: products } = await executeGraphql(ProductGetDocument, { id });
 
 	return products[0] as Product;
 }
@@ -26,10 +30,14 @@ export async function searchProductByName({
 	name: string;
 	page: string;
 }): Promise<Product[]> {
-	const { product: products } = await executeGraphql(ProductsGetListDocument, {
-		name,
-		pagination: { page: Number(page), pageSize: 10 },
-	}, { tags: ['products']} );
+	const { product: products } = await executeGraphql(
+		ProductsGetListDocument,
+		{
+			name,
+			pagination: { page: Number(page), pageSize: 10 },
+		},
+		{ tags: ["products"] },
+	);
 
 	return products as Product[];
 }

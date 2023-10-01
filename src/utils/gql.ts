@@ -2,8 +2,8 @@ import { type TypedDocumentString } from "@/gql/graphql";
 import { GraphQLResponse } from "@/types";
 
 type Options = {
-	tags?: string[]
-}
+	tags?: string[];
+};
 
 export const executeGraphql = async <TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
@@ -24,8 +24,8 @@ export const executeGraphql = async <TResult, TVariables>(
 			"Content-Type": "application/json",
 		},
 		next: {
-			tags: options?.tags
-		}
+			tags: options?.tags,
+		},
 	});
 
 	const graphqlResponse = (await res.json()) as GraphQLResponse<TResult>;

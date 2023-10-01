@@ -46,7 +46,9 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 					<h1 className="font-bold text-xl">{product.name}</h1>
 					<h4 className="font-bold">{formatMoney(product.price)}</h4>
 					{product.description && (
-						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">{product.description}</p>
+						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">
+							{product.description}
+						</p>
 					)}
 					<ProductConfigurator product={product} />
 				</div>

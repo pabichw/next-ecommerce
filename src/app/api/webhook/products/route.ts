@@ -1,9 +1,9 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import { NextResponse, type NextRequest } from "next/server";
- 
+import { type NextRequest, NextResponse } from "next/server";
+
 export async function POST(request: NextRequest): Promise<Response> {
 	const body: unknown = await request.json();
-	
+
 	if (
 		typeof body === "object" &&
 		body &&
