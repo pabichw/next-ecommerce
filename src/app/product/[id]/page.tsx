@@ -22,7 +22,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 		openGraph: {
 			title: productData.name,
 			description: productData.description,
-			images: [productData.image],
 		},
 	};
 }
