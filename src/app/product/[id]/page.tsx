@@ -33,7 +33,7 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 	return (
 		<main className="column-wrapper md:px-32 pt-12 md:pt-28">
 			<div className="flex flex-col md:flex-row gap-8 space-between">
-				<div className="flex-1 p-5 bg-white rounded-lg">
+				<div className="flex-1 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
 					<Image
 						className="mx-auto"
 						width={400}
@@ -46,13 +46,13 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 					<h1 className="font-bold text-xl">{product.name}</h1>
 					<h4 className="font-bold">{formatMoney(product.price)}</h4>
 					{product.description && (
-						<p className="mt-5 p-2 bg-white rounded-lg">{product.description}</p>
+						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">{product.description}</p>
 					)}
 					<ProductConfigurator product={product} />
 				</div>
 			</div>
 			{product.relatedProduct && (
-				<div className="mt-10 p-5 bg-white rounded-lg">
+				<div className="mt-10 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
 					<RelatedProduct products={product.relatedProduct} />
 				</div>
 			)}

@@ -4,7 +4,7 @@ const nextConfig = {
 		typedRoutes: true,
 	},
 	images: {
-		domains: ["images.dog.ceo", "naszsklep-api.vercel.app"],
+		domains: ["example.com", "images.dog.ceo", "naszsklep-api.vercel.app"],
 	},
 	redirects: async () => {
 		return [

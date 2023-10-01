@@ -25,7 +25,7 @@ async function ProductsPage({ params }: ProductsPageProps) {
 	return (
 		<main className="column-wrapper flex flex-col gap-20">
 			<ProductList products={products} />
-			<Pagination resourcePath={"/products"} totalPages={2} />
+			<Pagination resourcePath={"/products"} totalPages={3} />
 		</main>
 	);
 }
