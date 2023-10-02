@@ -34,6 +34,23 @@ export type Collection = {
   product?: Maybe<Array<Maybe<Product>>>;
 };
 
+export type Mutation = {
+  insertReview?: Maybe<Review>;
+  upsertProduct?: Maybe<Product>;
+};
+
+
+export type MutationInsertReviewArgs = {
+  product: Scalars['ID']['input'];
+  review: ReviewInput;
+};
+
+
+export type MutationUpsertProductArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  product: ProductUpsertInput;
+};
+
 export type Pagination = {
   pages: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
@@ -54,7 +71,16 @@ export type Product = {
   name: Scalars['String']['output'];
   price: Scalars['Int']['output'];
   relatedProduct?: Maybe<Array<Maybe<Product>>>;
+  reviews?: Maybe<Array<Maybe<Review>>>;
   slug: Scalars['String']['output'];
+};
+
+export type ProductUpsertInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  price?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Query = {
@@ -79,6 +105,23 @@ export type QueryProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   pagination?: InputMaybe<PaginationInput>;
+};
+
+export type Review = {
+  content: Scalars['String']['output'];
+  email: Scalars['String']['output'];
+  headline: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  rating: Scalars['Int']['output'];
+};
+
+export type ReviewInput = {
+  content: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  headline: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  rating: Scalars['Int']['input'];
 };
 
 export type CategoryGetQueryVariables = Exact<{
@@ -113,7 +156,7 @@ export type ProductGetQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null, relatedProduct?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
+export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null, relatedProduct?: Array<{ id: string, name: string, image: string, price: number } | null> | null, reviews?: Array<{ headline: string, content: string, rating: number, name: string, email: string } | null> | null } | null> };
 
 export type ProductsGetListQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -225,6 +268,13 @@ export const ProductGetDocument = new TypedDocumentString(`
       name
       image
       price
+    }
+    reviews {
+      headline
+      content
+      rating
+      name
+      email
     }
   }
 }

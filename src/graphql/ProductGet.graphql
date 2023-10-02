@@ -16,5 +16,12 @@ query ProductGet($id: ID!) {
 			image
 			price
 		}
+		reviews {
+			headline
+			content
+			rating
+			name
+			email
+		}
 	}
 }

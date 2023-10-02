@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getProductById } from "@/api/products";
 import ProductConfigurator from "@/ui/organisms/ProductConfigurator";
 import { RelatedProduct } from "@/ui/organisms/RelatedProducts";
+import { Reviews } from "@/ui/organisms/Reviews";
 import { formatMoney } from "@/utils/money";
 
 type ProductPageProps = {
@@ -55,6 +56,11 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 			{product.relatedProduct && (
 				<div className="mt-10 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
 					<RelatedProduct products={product.relatedProduct} />
+				</div>
+			)}
+			{product.reviews && (
+				<div className="mt-10 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
+					<Reviews reviews={product.reviews} />
 				</div>
 			)}
 		</main>
