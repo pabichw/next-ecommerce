@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { debounce } from "radash";
 import { ChangeEvent, FormEvent } from "react";
 
-import TextField from "../atoms/TextField";
+import Field from "@/ui/atoms/Field";
 
 export function SearchInput() {
 	// eslint-disable-next-line @typescript-eslint/unbound-method
@@ -31,7 +31,7 @@ export function SearchInput() {
 					/* eslint-enable */
 				}}
 			>
-				<TextField placeholder="Search..." onChange={debouncedHandleSearch} role="searchbox" />
+				<Field placeholder="Search..." onChange={debouncedHandleSearch} role="searchbox" />
 			</form>
 		</div>
 	);
