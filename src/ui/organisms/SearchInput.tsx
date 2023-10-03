@@ -4,7 +4,6 @@ import { Route } from "next";
 import { useRouter } from "next/navigation";
 import { debounce } from "radash";
 import { ChangeEvent, FormEvent } from "react";
-
 import Field from "@/ui/atoms/Field";
 
 export function SearchInput() {

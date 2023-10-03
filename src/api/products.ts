@@ -1,4 +1,10 @@
-import { Product, ProductGetDocument, ProductsGetListDocument } from "@/gql/graphql";
+import {
+	CreateReviewDocument,
+	Product,
+	ProductGetDocument,
+	ProductsGetListDocument,
+	Review,
+} from "@/gql/graphql";
 import { executeGraphql } from "@/utils/gql";
 
 export async function getProducts({ page }: { page: string }): Promise<Product[] | null> {
@@ -40,4 +46,17 @@ export async function searchProductByName({
 	);
 
 	return products as Product[];
+}
+
+export async function sendReview(productId: string, reviewData: Omit<Review, "id">) {
+	const responseData = await executeGraphql(CreateReviewDocument, {
+		productId,
+		reviewInput: reviewData,
+	});
+
+	if (!responseData) {
+		return false;
+	}
+
+	return true;
 }

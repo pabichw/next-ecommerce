@@ -1,0 +1,6 @@
+mutation createReview($productId: ID!, $reviewInput: ReviewInput!) {
+	insertReview(product: $productId, review: $reviewInput) {
+		id
+		name
+	}
+}

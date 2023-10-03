@@ -1,14 +1,34 @@
-"use client";
-
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
-import { useState } from "react";
+import { revalidatePath } from "next/cache";
 import { twMerge } from "tailwind-merge";
+import { sendReview } from "@/api/products";
 import { Maybe, Review } from "@/gql/graphql";
 import { ReviewItem } from "@/ui//molecules/ReviewItem";
 import Field from "@/ui/atoms/Field";
 
-export const Reviews = ({ reviews }: { reviews: Maybe<Review>[] }) => {
-	const [isVisible, setFormVisible] = useState<boolean>(false);
+async function sendReviewAction(formData: FormData): Promise<void> {
+	"use server";
+
+	await sendReview(String(formData.get("productId")), {
+		headline: String(formData.get("heading")),
+		content: String(formData.get("content")),
+		rating: Number(formData.get("rating")),
+		name: String(formData.get("name")),
+		email: String(formData.get("email")),
+	});
+
+	revalidatePath(`/products/${String(formData.get("productId"))}`);
+}
+
+export const Reviews = ({
+	reviews,
+	productId,
+}: {
+	reviews: Maybe<Review>[];
+	productId: string;
+}) => {
+	const isVisible = true;
 
 	return (
 		<div>
@@ -16,7 +36,7 @@ export const Reviews = ({ reviews }: { reviews: Maybe<Review>[] }) => {
 				<h3 className="mb-5 text-l font-bold">Reviews</h3>
 				<button
 					className="flex items-center gap-1 text-sm hover:underline text-sky-400"
-					onClick={() => setFormVisible(!isVisible)}
+					// onClick={() => setFormVisible(!isVisible)}
 				>
 					{isVisible ? <MinusCircleIcon size={12} /> : <PlusCircleIcon size={12} />}
 					{isVisible ? "Close form" : "Add review"}
@@ -28,7 +48,8 @@ export const Reviews = ({ reviews }: { reviews: Maybe<Review>[] }) => {
 					!isVisible && "h-[0px] p-0 outline-0",
 				)}
 			>
-				<form data-testid="add-review-form" className="grid gap-1" onSubmit={console.log}>
+				<form data-testid="add-review-form" className="grid gap-1" action={sendReviewAction}>
+					<input name="productId" value={productId} type="hidden" />
 					<Field name="heading" placeholder="Title" required />
 					<Field name="content" placeholder="Content" required />
 					<Field
@@ -36,7 +57,7 @@ export const Reviews = ({ reviews }: { reviews: Maybe<Review>[] }) => {
 						placeholder="Rating"
 						required
 						type="number"
-						value="5"
+						defaultValue="5"
 						min="1"
 						max="5"
 					/>

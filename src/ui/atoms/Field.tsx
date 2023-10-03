@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 type FieldProps = {
 	cls?: string;
+	defaultValue?: string;
 	name?: string;
 	placeholder?: string;
 	required?: boolean;

@@ -60,7 +60,7 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 			)}
 			{product.reviews && (
 				<div className="mt-10 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
-					<Reviews reviews={product.reviews} />
+					<Reviews reviews={product.reviews} productId={product.id} />
 				</div>
 			)}
 		</main>
