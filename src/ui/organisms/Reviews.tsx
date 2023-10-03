@@ -18,7 +18,7 @@ async function sendReviewAction(formData: FormData): Promise<void> {
 		email: String(formData.get("email")),
 	});
 
-	revalidatePath(`/products/${String(formData.get("productId"))}`);
+	revalidatePath(`/product/${String(formData.get("productId"))}`);
 }
 
 export const Reviews = ({
