@@ -10,7 +10,6 @@ export const executeGraphql = async <TResult, TVariables>(
 	variables: TVariables,
 	options?: Options,
 ): Promise<TResult> => {
-
 	if (!process.env.NEXT_PUBLIC_GRAPHQL_URL) {
 		throw TypeError("NEXT_PUBLIC_GRAPHQL_URL is not defined");
 	}

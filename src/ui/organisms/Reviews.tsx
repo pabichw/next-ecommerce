@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
-import { twMerge } from "tailwind-merge";
 import { experimental_useOptimistic } from "react";
+import { twMerge } from "tailwind-merge";
+import { sendReviewAction } from "@/actions/reviews";
 import { Maybe, Review } from "@/gql/graphql";
 import { ReviewItem } from "@/ui//molecules/ReviewItem";
 import Field from "@/ui/atoms/Field";
 import { formDataToReview } from "@/utils/reviews";
-import { sendReviewAction } from "@/actions/reviews";
+
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 
 export const Reviews = ({
 	reviews,
@@ -17,9 +20,9 @@ export const Reviews = ({
 	productId: string;
 }) => {
 	const [optimisticReviews, addOptimisticReview] = experimental_useOptimistic(
-    reviews || [],
-    (state, review: Maybe<Review>) => [review, ...state]
-  );
+		reviews || [],
+		(state, review: Maybe<Review>) => [review, ...state],
+	);
 	const isVisible = true;
 
 	return (
@@ -57,8 +60,8 @@ export const Reviews = ({
 					<Field name="email" placeholder="Email" required cls="col-span-1" />
 					<button
 						className="text-white bg-sky-400 hover:bg-sky-500 p-2 rounded-md font-bold shadow transition-colors"
-						formAction={async (data) => { 
-							addOptimisticReview(formDataToReview(data));
+						formAction={async (data) => {
+							addOptimisticReview({ id: "temp-id", ...formDataToReview(data) });
 							await sendReviewAction(data);
 						}}
 					>
