@@ -1,25 +1,13 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
+"use client"
+
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
-import { revalidatePath } from "next/cache";
 import { twMerge } from "tailwind-merge";
-import { sendReview } from "@/api/products";
+import { experimental_useOptimistic } from "react";
 import { Maybe, Review } from "@/gql/graphql";
 import { ReviewItem } from "@/ui//molecules/ReviewItem";
 import Field from "@/ui/atoms/Field";
-
-async function sendReviewAction(formData: FormData): Promise<void> {
-	"use server";
-
-	await sendReview(String(formData.get("productId")), {
-		headline: String(formData.get("heading")),
-		content: String(formData.get("content")),
-		rating: Number(formData.get("rating")),
-		name: String(formData.get("name")),
-		email: String(formData.get("email")),
-	});
-
-	revalidatePath(`/product/${String(formData.get("productId"))}`);
-}
+import { formDataToReview } from "@/utils/reviews";
+import { sendReviewAction } from "@/actions/reviews";
 
 export const Reviews = ({
 	reviews,
@@ -28,6 +16,10 @@ export const Reviews = ({
 	reviews: Maybe<Review>[];
 	productId: string;
 }) => {
+	const [optimisticReviews, addOptimisticReview] = experimental_useOptimistic(
+    reviews || [],
+    (state, review: Maybe<Review>) => [review, ...state]
+  );
 	const isVisible = true;
 
 	return (
@@ -48,7 +40,7 @@ export const Reviews = ({
 					!isVisible && "h-[0px] p-0 outline-0",
 				)}
 			>
-				<form data-testid="add-review-form" className="grid gap-1" action={sendReviewAction}>
+				<form data-testid="add-review-form" className="grid gap-1">
 					<input name="productId" value={productId} type="hidden" />
 					<Field name="heading" placeholder="Title" required />
 					<Field name="content" placeholder="Content" required />
@@ -65,17 +57,20 @@ export const Reviews = ({
 					<Field name="email" placeholder="Email" required cls="col-span-1" />
 					<button
 						className="text-white bg-sky-400 hover:bg-sky-500 p-2 rounded-md font-bold shadow transition-colors"
-						type="submit"
+						formAction={async (data) => { 
+							addOptimisticReview(formDataToReview(data));
+							await sendReviewAction(data);
+						}}
 					>
 						Send 🐶
 					</button>
 				</form>
 			</div>
-			{!reviews || reviews.length === 0 ? (
+			{!optimisticReviews || optimisticReviews.length === 0 ? (
 				<div>No reviews for this product 🥵 Be first</div>
 			) : (
 				<ul data-testid="reviews-list">
-					{reviews.map((review) => (
+					{optimisticReviews.map((review) => (
 						<ReviewItem key={review?.id} review={review} />
 					))}
 				</ul>

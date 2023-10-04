@@ -8,7 +8,7 @@ export const ReviewItem = ({ review }: { review: Maybe<Review> }) => {
 
 	return (
 		<li className="mx-auto">
-			<div className="group flex flex-col gap-3 p-3 w-full h-full cursor-pointer border-bottom-1 hover:shadow-xl">
+			<div className="group flex flex-col gap-2 p-3 w-full h-full cursor-pointer border-bottom-1 hover:shadow-xl">
 				<Rating id={review.id} value={review.rating} />
 				<h3 className="text-md font-bold">{review.headline}</h3>
 				<p className="text-sm">{review.content}</p>
