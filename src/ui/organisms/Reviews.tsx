@@ -45,7 +45,7 @@ export const Reviews = ({
 			>
 				<form data-testid="add-review-form" className="grid gap-1">
 					<input name="productId" value={productId} type="hidden" />
-					<Field name="heading" placeholder="Title" required />
+					<Field name="headline" placeholder="Title" required />
 					<Field name="content" placeholder="Content" required />
 					<Field
 						name="rating"
