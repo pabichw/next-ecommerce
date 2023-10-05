@@ -1,0 +1,19 @@
+mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {
+	addToCart(
+		id: $id
+		productId: $productId
+		quantity: $quantity
+		configurableAttributes: $configurableAttributes
+	) {
+		id
+		items {
+			id
+			quantity
+			product {
+				id
+				name
+				configurableAttributes
+			}
+		}
+	}
+}

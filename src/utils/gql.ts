@@ -3,6 +3,7 @@ import { GraphQLResponse } from "@/types";
 
 type Options = {
 	tags?: string[];
+	cache?: RequestCache;
 };
 
 export const executeGraphql = async <TResult, TVariables>(
@@ -23,6 +24,7 @@ export const executeGraphql = async <TResult, TVariables>(
 		headers: {
 			"Content-Type": "application/json",
 		},
+		cache: options?.cache,
 		next: {
 			tags: options?.tags,
 		},

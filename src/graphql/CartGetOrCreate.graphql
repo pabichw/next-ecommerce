@@ -1,0 +1,14 @@
+query getOrCreateCart($id: ID!) {
+	cart(id: $id) {
+		id
+		items {
+			id
+			quantity
+			product {
+				name
+				id
+				configurableAttributes
+			}
+		}
+	}
+}

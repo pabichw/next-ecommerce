@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Metadata } from "next";
 import Image from "next/image";
+import { addToCartAction } from "@/actions/cart";
 import { getProductById } from "@/api/products";
-import ProductConfigurator from "@/ui/organisms/ProductConfigurator";
+import { AddToCart } from "@/ui/molecules/AddToCart";
 import { RelatedProduct } from "@/ui/organisms/RelatedProducts";
 import { Reviews } from "@/ui/organisms/Reviews";
 import { formatMoney } from "@/utils/money";
@@ -50,7 +52,10 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 							{product.description}
 						</p>
 					)}
-					<ProductConfigurator product={product} />
+					<form action={addToCartAction}>
+						<input type="hidden" name="productId" value={id} />
+						<AddToCart />
+					</form>
 				</div>
 			</div>
 			{product.relatedProduct && (

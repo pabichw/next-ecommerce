@@ -1,16 +1,21 @@
-"use client";
-
 import { ShoppingCart } from "lucide-react";
+import { type Route } from "next";
+import Link from "next/link";
 import Touchable from "@/ui/atoms/Touchable";
+import { getCartFromCookies } from "@/api/cart";
 
 function Minicart() {
-	const onClick = (): void => {
-		console.log("click");
-	};
+	const cart = getCartFromCookies();
 
+	console.log("minicart - cart", cart);
 	return (
-		<Touchable onClick={onClick}>
-			<ShoppingCart size={20} strokeWidth={2} />
+		<Touchable>
+			<Link href={"/cart" as Route}>
+				<ShoppingCart size={20} strokeWidth={2} />
+				<span className="absolute -top-2 -right-2 w-[15px] h-[15px] bg-red-800 text-neutral-50 text-xs rounded-full">
+					{cart?.items?.length}
+				</span>
+			</Link>
 		</Touchable>
 	);
 }

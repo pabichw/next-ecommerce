@@ -35,8 +35,18 @@ export type Collection = {
 };
 
 export type Mutation = {
+  addToCart?: Maybe<Order>;
   insertReview?: Maybe<Review>;
+  updateOrderItemQty?: Maybe<OrderItem>;
   upsertProduct?: Maybe<Product>;
+};
+
+
+export type MutationAddToCartArgs = {
+  configurableAttributes?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
 };
 
 
@@ -46,9 +56,29 @@ export type MutationInsertReviewArgs = {
 };
 
 
+export type MutationUpdateOrderItemQtyArgs = {
+  orderItemId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+};
+
+
 export type MutationUpsertProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   product: ProductUpsertInput;
+};
+
+export type Order = {
+  id: Scalars['ID']['output'];
+  items?: Maybe<Array<Maybe<OrderItem>>>;
+  status?: Maybe<Scalars['String']['output']>;
+  userConnection?: Maybe<Scalars['String']['output']>;
+};
+
+export type OrderItem = {
+  configurableAttributes?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  product?: Maybe<Product>;
+  quantity: Scalars['Int']['output'];
 };
 
 export type Pagination = {
@@ -84,9 +114,15 @@ export type ProductUpsertInput = {
 };
 
 export type Query = {
+  cart?: Maybe<Order>;
   category?: Maybe<CategoryWithPagination>;
   collection: Array<Maybe<Collection>>;
   product: Array<Maybe<Product>>;
+};
+
+
+export type QueryCartArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
@@ -123,6 +159,23 @@ export type ReviewInput = {
   name: Scalars['String']['input'];
   rating: Scalars['Int']['input'];
 };
+
+export type AddToCartMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+  configurableAttributes?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type AddToCartMutation = { addToCart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { id: string, name: string, configurableAttributes?: string | null } | null } | null> | null } | null };
+
+export type GetOrCreateCartQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null } | null } | null> | null } | null };
 
 export type CategoryGetQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -174,6 +227,14 @@ export type CreateReviewMutationVariables = Exact<{
 
 export type CreateReviewMutation = { insertReview?: { id: string, name: string } | null };
 
+export type UpdateOrderItemQtyMutationVariables = Exact<{
+  orderItemId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+}>;
+
+
+export type UpdateOrderItemQtyMutation = { updateOrderItemQty?: { id: string, quantity: number, product?: { name: string } | null } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -189,6 +250,43 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const AddToCartDocument = new TypedDocumentString(`
+    mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {
+  addToCart(
+    id: $id
+    productId: $productId
+    quantity: $quantity
+    configurableAttributes: $configurableAttributes
+  ) {
+    id
+    items {
+      id
+      quantity
+      product {
+        id
+        name
+        configurableAttributes
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AddToCartMutation, AddToCartMutationVariables>;
+export const GetOrCreateCartDocument = new TypedDocumentString(`
+    query getOrCreateCart($id: ID!) {
+  cart(id: $id) {
+    id
+    items {
+      id
+      quantity
+      product {
+        name
+        id
+        configurableAttributes
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetOrCreateCartQuery, GetOrCreateCartQueryVariables>;
 export const CategoryGetDocument = new TypedDocumentString(`
     query CategoryGet($slug: String, $pagination: PaginationInput!) {
   category(slug: $slug, pagination: $pagination) {
@@ -308,3 +406,14 @@ export const CreateReviewDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CreateReviewMutation, CreateReviewMutationVariables>;
+export const UpdateOrderItemQtyDocument = new TypedDocumentString(`
+    mutation UpdateOrderItemQty($orderItemId: ID!, $quantity: Int!) {
+  updateOrderItemQty(orderItemId: $orderItemId, quantity: $quantity) {
+    id
+    quantity
+    product {
+      name
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<UpdateOrderItemQtyMutation, UpdateOrderItemQtyMutationVariables>;

@@ -1,0 +1,9 @@
+mutation UpdateOrderItemQty($orderItemId: ID!, $quantity: Int!) {
+	updateOrderItemQty(orderItemId: $orderItemId, quantity: $quantity) {
+		id
+		quantity
+		product {
+			name
+		}
+	}
+}

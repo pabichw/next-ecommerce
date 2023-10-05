@@ -1,8 +1,5 @@
-"use client";
-
 import { HomeIcon, LayersIcon, ListChecks } from "lucide-react";
 import { Route } from "next";
-import { useEffect, useState } from "react";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 import Logo from "@/ui/atoms/Logo";
 import Auth from "@/ui/molecules/Auth";
@@ -15,55 +12,20 @@ type NavbarProps = {
 };
 
 function Navbar({ categories }: NavbarProps) {
-	const [minified, setMinified] = useState(false);
-
-	const checkMinified = () => {
-		const { scrollY } = window;
-
-		const shouldBeMinified = scrollY > 100;
-		if (shouldBeMinified) {
-			setMinified(true);
-			return;
-		}
-
-		if (!shouldBeMinified) {
-			setMinified(false);
-			return;
-		}
-	};
-
-	useEffect(() => {
-		checkMinified();
-		document.addEventListener("scroll", checkMinified);
-
-		return () => {
-			document.removeEventListener("scroll", checkMinified);
-		};
-	}, []);
-
 	const linkCls = `group no-underline relative font-bold transition transition-[color,border-color,gap] border-b-[2px] border-transparent
     hover:border-sky-600 hover:text-sky-600 hover:no-underline
-    ${minified ? "gap-0" : ""}
   `;
 	const activeLinkCls = "text-sky-600 border-sky-600";
 	const iconCls = "mt-[-1px]";
-	const linkTextCls = `hidden md:inline max-w-full overflow-x-hidden transition transition-[max-width] ${
-		minified ? "!max-w-0" : ""
-	}`;
+	const linkTextCls = `hidden md:inline max-w-full overflow-x-hidden transition transition-[max-width]`;
 
 	return (
 		<div className="fixed top-0 z-10 bg-white shadow w-full flex align-center justify-between gap-8">
 			<nav
 				role="navigation"
-				className={`column-wrapper mx-auto ${
-					minified ? "py-[0.25rem]" : "py-2"
-				} flex items-center justify-between w-full transition-[padding]`}
+				className={`column-wrapper mx-auto py-2 flex items-center justify-between w-full transition-[padding]`}
 			>
-				<div
-					className={`scale-100 grayscale-0 transition-[transform,filter] ${
-						minified ? "scale-[0.7] !grayscale" : ""
-					}`}
-				>
+				<div className={`scale-100 grayscale-0 transition-[transform,filter]`}>
 					<Logo />
 				</div>
 				<div className="flex gap-8 items-center">
