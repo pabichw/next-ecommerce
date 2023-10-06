@@ -17,12 +17,14 @@ export default function CollectionPage() {
 										orderItemId={item.id}
 										currentQty={item.quantity}
 										type="decrement"
+                    dataTestId="decrement"
 									/>
-									{item.quantity}
+									<span data-testId="quantity">{item.quantity}</span>
 									<ChangeItemQty
 										orderItemId={item.id}
 										currentQty={item.quantity}
 										type="increment"
+                    dataTestId="increment"
 									/>
 								</form>
 							</li>

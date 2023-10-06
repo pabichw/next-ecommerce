@@ -20,10 +20,10 @@ function Navbar({ categories }: NavbarProps) {
 	const linkTextCls = `hidden md:inline max-w-full overflow-x-hidden transition transition-[max-width]`;
 
 	return (
-		<div className="fixed top-0 z-10 bg-white shadow w-full flex align-center justify-between gap-8">
+		<div className="column-wrapper px-4 py-2 fixed top-0 z-10 bg-white shadow w-full flex align-center justify-between gap-8 transition-[padding]">
 			<nav
 				role="navigation"
-				className={`column-wrapper mx-auto py-2 flex items-center justify-between w-full transition-[padding]`}
+				className="mx-auto flex items-center justify-between w-full"
 			>
 				<div className={`scale-100 grayscale-0 transition-[transform,filter]`}>
 					<Logo />
@@ -55,15 +55,14 @@ function Navbar({ categories }: NavbarProps) {
 						</ActiveLink>
 					))}
 				</div>
-				<div className="mx-3">
+			</nav>
+			<div className="flex items-center justify-center mx-3">
 					<SearchInput />
-				</div>
-				<div className="flex gap-5 items-center">
-					<LangSwitcher />
+			</div>
+			<div className="flex gap-5 items-center justify-between ">
 					<Auth />
 					<Minicart />
-				</div>
-			</nav>
+			</div>
 		</div>
 	);
 }
