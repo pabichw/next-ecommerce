@@ -11,8 +11,9 @@ export async function addToCartAction(formData: FormData) {
 	await addToCart(cart.id, String(formData.get("productId")), 1, "");
 }
 
-export async function changeItemQtyAction(orderItemId: string, quantity: number) {
+export async function changeItemQtyAction(orderId: string, orderItemId: string, quantity: number) {
 	"use server";
-	await changeItemQty(orderItemId, quantity);
+
+	await changeItemQty(orderId, orderItemId, quantity);
 	await getOrCreateCart();
 }

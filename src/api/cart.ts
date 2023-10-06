@@ -74,14 +74,13 @@ export async function addToCart(
 }
 
 export async function changeItemQty(
+	orderId: string,
 	orderItemId: string,
 	quantity: number,
 ): Promise<OrderItem | null> {
-	console.log(orderItemId, quantity);
-
 	const response = await executeGraphql(
 		UpdateOrderItemQtyDocument,
-		{ orderItemId, quantity },
+		{ orderId, orderItemId, quantity },
 		{ cache: "no-cache" },
 	);
 

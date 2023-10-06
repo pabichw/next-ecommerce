@@ -1,36 +1,17 @@
 import { getCartFromCookies } from "@/api/cart";
-import { ChangeItemQty } from "@/ui/molecules/ChangeItemQty";
+import CartItems from "@/ui/organisms/CartItems";
+import Payments from "@/ui/organisms/Payments";
 
-export default function CollectionPage() {
+export default function CartPage() {
 	const cart = getCartFromCookies();
 
 	return (
 		<main className="column-wrapper">
-			<ul>
-				{cart?.items?.map(
-					(item) =>
-						item && (
-							<li key={`${item.id}`}>
-								{item.product?.name}
-								<form>
-									<ChangeItemQty
-										orderItemId={item.id}
-										currentQty={item.quantity}
-										type="decrement"
-                    dataTestId="decrement"
-									/>
-									<span data-testId="quantity">{item.quantity}</span>
-									<ChangeItemQty
-										orderItemId={item.id}
-										currentQty={item.quantity}
-										type="increment"
-                    dataTestId="increment"
-									/>
-								</form>
-							</li>
-						),
-				)}
-			</ul>
+			<div className="bg-white rounded-md p-4">
+				<h1 className="text-xl font-bold mb-3">Cart</h1>
+				<CartItems cart={cart} />
+				<Payments cart={cart} />
+			</div>
 		</main>
 	);
 }

@@ -57,6 +57,7 @@ export type MutationInsertReviewArgs = {
 
 
 export type MutationUpdateOrderItemQtyArgs = {
+  orderId?: InputMaybe<Scalars['ID']['input']>;
   orderItemId: Scalars['ID']['input'];
   quantity: Scalars['Int']['input'];
 };
@@ -175,7 +176,7 @@ export type GetOrCreateCartQueryVariables = Exact<{
 }>;
 
 
-export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null } | null } | null> | null } | null };
+export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null, price: number } | null } | null> | null } | null };
 
 export type CategoryGetQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -228,6 +229,7 @@ export type CreateReviewMutationVariables = Exact<{
 export type CreateReviewMutation = { insertReview?: { id: string, name: string } | null };
 
 export type UpdateOrderItemQtyMutationVariables = Exact<{
+  orderId?: InputMaybe<Scalars['ID']['input']>;
   orderItemId: Scalars['ID']['input'];
   quantity: Scalars['Int']['input'];
 }>;
@@ -282,6 +284,7 @@ export const GetOrCreateCartDocument = new TypedDocumentString(`
         name
         id
         configurableAttributes
+        price
       }
     }
   }
@@ -407,8 +410,12 @@ export const CreateReviewDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CreateReviewMutation, CreateReviewMutationVariables>;
 export const UpdateOrderItemQtyDocument = new TypedDocumentString(`
-    mutation UpdateOrderItemQty($orderItemId: ID!, $quantity: Int!) {
-  updateOrderItemQty(orderItemId: $orderItemId, quantity: $quantity) {
+    mutation UpdateOrderItemQty($orderId: ID, $orderItemId: ID!, $quantity: Int!) {
+  updateOrderItemQty(
+    orderId: $orderId
+    orderItemId: $orderItemId
+    quantity: $quantity
+  ) {
     id
     quantity
     product {

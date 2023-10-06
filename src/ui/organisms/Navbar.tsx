@@ -3,7 +3,6 @@ import { Route } from "next";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 import Logo from "@/ui/atoms/Logo";
 import Auth from "@/ui/molecules/Auth";
-import LangSwitcher from "@/ui/molecules/LangSwitcher";
 import Minicart from "@/ui/molecules/Minicart";
 import { SearchInput } from "@/ui/organisms/SearchInput";
 
@@ -21,10 +20,7 @@ function Navbar({ categories }: NavbarProps) {
 
 	return (
 		<div className="column-wrapper px-4 py-2 fixed top-0 z-10 bg-white shadow w-full flex align-center justify-between gap-8 transition-[padding]">
-			<nav
-				role="navigation"
-				className="mx-auto flex items-center justify-between w-full"
-			>
+			<nav role="navigation" className="mx-auto flex items-center justify-between w-full">
 				<div className={`scale-100 grayscale-0 transition-[transform,filter]`}>
 					<Logo />
 				</div>
@@ -57,11 +53,11 @@ function Navbar({ categories }: NavbarProps) {
 				</div>
 			</nav>
 			<div className="flex items-center justify-center mx-3">
-					<SearchInput />
+				<SearchInput />
 			</div>
 			<div className="flex gap-5 items-center justify-between ">
-					<Auth />
-					<Minicart />
+				<Auth />
+				<Minicart />
 			</div>
 		</div>
 	);

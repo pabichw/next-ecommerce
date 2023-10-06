@@ -1,5 +1,5 @@
-mutation UpdateOrderItemQty($orderItemId: ID!, $quantity: Int!) {
-	updateOrderItemQty(orderItemId: $orderItemId, quantity: $quantity) {
+mutation UpdateOrderItemQty($orderId: ID, $orderItemId: ID!, $quantity: Int!) {
+	updateOrderItemQty(orderId: $orderId, orderItemId: $orderItemId, quantity: $quantity) {
 		id
 		quantity
 		product {
