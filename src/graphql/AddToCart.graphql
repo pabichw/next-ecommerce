@@ -13,6 +13,8 @@ mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttr
 				id
 				name
 				configurableAttributes
+				price
+				image
 			}
 		}
 	}

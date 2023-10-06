@@ -9,6 +9,7 @@ query getOrCreateCart($id: ID!) {
 				id
 				configurableAttributes
 				price
+				image
 			}
 		}
 	}

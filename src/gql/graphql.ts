@@ -169,14 +169,14 @@ export type AddToCartMutationVariables = Exact<{
 }>;
 
 
-export type AddToCartMutation = { addToCart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { id: string, name: string, configurableAttributes?: string | null } | null } | null> | null } | null };
+export type AddToCartMutation = { addToCart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { id: string, name: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
 
 export type GetOrCreateCartQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null, price: number } | null } | null> | null } | null };
+export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
 
 export type CategoryGetQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -268,6 +268,8 @@ export const AddToCartDocument = new TypedDocumentString(`
         id
         name
         configurableAttributes
+        price
+        image
       }
     }
   }
@@ -285,6 +287,7 @@ export const GetOrCreateCartDocument = new TypedDocumentString(`
         id
         configurableAttributes
         price
+        image
       }
     }
   }

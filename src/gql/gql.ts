@@ -14,8 +14,8 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {\n  addToCart(\n    id: $id\n    productId: $productId\n    quantity: $quantity\n    configurableAttributes: $configurableAttributes\n  ) {\n    id\n    items {\n      id\n      quantity\n      product {\n        id\n        name\n        configurableAttributes\n      }\n    }\n  }\n}": types.AddToCartDocument,
-    "query getOrCreateCart($id: ID!) {\n  cart(id: $id) {\n    id\n    items {\n      id\n      quantity\n      product {\n        name\n        id\n        configurableAttributes\n        price\n      }\n    }\n  }\n}": types.GetOrCreateCartDocument,
+    "mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {\n  addToCart(\n    id: $id\n    productId: $productId\n    quantity: $quantity\n    configurableAttributes: $configurableAttributes\n  ) {\n    id\n    items {\n      id\n      quantity\n      product {\n        id\n        name\n        configurableAttributes\n        price\n        image\n      }\n    }\n  }\n}": types.AddToCartDocument,
+    "query getOrCreateCart($id: ID!) {\n  cart(id: $id) {\n    id\n    items {\n      id\n      quantity\n      product {\n        name\n        id\n        configurableAttributes\n        price\n        image\n      }\n    }\n  }\n}": types.GetOrCreateCartDocument,
     "query CategoryGet($slug: String, $pagination: PaginationInput!) {\n  category(slug: $slug, pagination: $pagination) {\n    data {\n      id\n      name\n      slug\n      product {\n        id\n        name\n        price\n        image\n      }\n    }\n    pagination {\n      pages\n      total\n    }\n  }\n}": types.CategoryGetDocument,
     "query CategoryGetList($pagination: PaginationInput!) {\n  category(pagination: $pagination) {\n    data {\n      id\n      name\n      slug\n      product {\n        name\n        id\n        slug\n      }\n    }\n    pagination {\n      pages\n      total\n    }\n  }\n}": types.CategoryGetListDocument,
     "query CollectionGet($name: String) {\n  collection(name: $name) {\n    id\n    name\n    product {\n      id\n      name\n      image\n      price\n    }\n  }\n}": types.CollectionGetDocument,
@@ -29,11 +29,11 @@ const documents = {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {\n  addToCart(\n    id: $id\n    productId: $productId\n    quantity: $quantity\n    configurableAttributes: $configurableAttributes\n  ) {\n    id\n    items {\n      id\n      quantity\n      product {\n        id\n        name\n        configurableAttributes\n      }\n    }\n  }\n}"): typeof import('./graphql').AddToCartDocument;
+export function graphql(source: "mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttributes: String) {\n  addToCart(\n    id: $id\n    productId: $productId\n    quantity: $quantity\n    configurableAttributes: $configurableAttributes\n  ) {\n    id\n    items {\n      id\n      quantity\n      product {\n        id\n        name\n        configurableAttributes\n        price\n        image\n      }\n    }\n  }\n}"): typeof import('./graphql').AddToCartDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query getOrCreateCart($id: ID!) {\n  cart(id: $id) {\n    id\n    items {\n      id\n      quantity\n      product {\n        name\n        id\n        configurableAttributes\n        price\n      }\n    }\n  }\n}"): typeof import('./graphql').GetOrCreateCartDocument;
+export function graphql(source: "query getOrCreateCart($id: ID!) {\n  cart(id: $id) {\n    id\n    items {\n      id\n      quantity\n      product {\n        name\n        id\n        configurableAttributes\n        price\n        image\n      }\n    }\n  }\n}"): typeof import('./graphql').GetOrCreateCartDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
