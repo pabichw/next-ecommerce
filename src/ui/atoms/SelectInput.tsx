@@ -1,22 +1,14 @@
 import { ChangeEvent } from "react";
 
 type SelectInputProps = {
-	options: { value: string; label: string }[];
 	onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 	placeholder: string;
 	id?: string;
-	dataTestIdOption?: string;
 	defaultValue?: string;
+	children: React.ReactNode;
 };
 
-function SelectInput({
-	id,
-	dataTestIdOption,
-	options,
-	defaultValue,
-	onChange,
-	placeholder,
-}: SelectInputProps) {
+function SelectInput({ id, defaultValue, onChange, placeholder, children }: SelectInputProps) {
 	return (
 		<>
 			<select
@@ -26,12 +18,7 @@ function SelectInput({
 				placeholder={placeholder}
 				onChange={onChange}
 			>
-				<option value="">Default</option>
-				{options.map((option, key) => (
-					<option key={`option-${key}`} value={option.value} data-testId={dataTestIdOption}>
-						{option.label}
-					</option>
-				))}
+				{children}
 			</select>
 		</>
 	);

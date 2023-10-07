@@ -7,5 +7,6 @@ query ProductsGetList($name: String, $pagination: PaginationInput, $sorting: Str
 		category {
 			name
 		}
+		reviewAvg
 	}
 }

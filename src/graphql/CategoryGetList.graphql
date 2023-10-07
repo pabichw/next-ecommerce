@@ -4,11 +4,6 @@ query CategoryGetList($pagination: PaginationInput!) {
 			id
 			name
 			slug
-			product {
-				name
-				id
-				slug
-			}
 		}
 		pagination {
 			pages

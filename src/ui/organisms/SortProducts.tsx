@@ -5,6 +5,7 @@ import { ChangeEvent } from "react";
 import SelectInput from "@/ui/atoms/SelectInput";
 
 function SortProducts({ defaultSorting }: { defaultSorting: string }) {
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const { push } = useRouter();
 
 	const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -25,15 +26,26 @@ function SortProducts({ defaultSorting }: { defaultSorting: string }) {
 			</label>
 			<SelectInput
 				id="product-sort-input"
-				dataTestIdOption="sort-by-price"
-				options={[
-					{ value: "sort-price-asc", label: "Sort by price ascending" },
-					{ value: "sort-price-desc", label: "Sort by price descending" },
-				]}
 				defaultValue={defaultSorting}
 				placeholder="Sort by..."
 				onChange={handleOnChange}
-			/>
+			>
+				<option selected value="">
+					Default
+				</option>
+				<option value="sort-price-asc" data-testId="sort-by-price">
+					Sort by price ascending
+				</option>
+				<option value="sort-price-desc" data-testId="sort-by-price">
+					Sort by price descending
+				</option>
+				<option value="sort-rating-asc" data-testId="sort-by-rating">
+					Sort by rating ascending
+				</option>
+				<option value="sort-rating-desc" data-testId="sort-by-rating">
+					Sort by rating descending
+				</option>
+			</SelectInput>
 		</div>
 	);
 }

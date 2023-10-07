@@ -4,6 +4,7 @@ import Image from "next/image";
 import { addToCartAction } from "@/actions/cart";
 import { getProductById } from "@/api/products";
 import { AddToCart } from "@/ui/molecules/AddToCart";
+import { Rating } from "@/ui/molecules/Rating";
 import { RelatedProduct } from "@/ui/organisms/RelatedProducts";
 import { Reviews } from "@/ui/organisms/Reviews";
 import { formatMoney } from "@/utils/money";
@@ -47,6 +48,7 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 				<div className="flex-1 flex flex-col gap-2 py-5">
 					<h1 className="font-bold text-xl">{product.name}</h1>
 					<h4 className="font-bold">{formatMoney(product.price)}</h4>
+					<Rating id="overal-rating" value={Math.ceil(product.reviewAvg || 0)} />
 					{product.description && (
 						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">
 							{product.description}

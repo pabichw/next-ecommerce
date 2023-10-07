@@ -9,6 +9,7 @@ query CategoryGet($slug: String, $pagination: PaginationInput!) {
 				name
 				price
 				image
+				reviewAvg
 			}
 		}
 		pagination {

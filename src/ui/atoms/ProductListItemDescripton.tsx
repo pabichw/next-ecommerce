@@ -1,4 +1,5 @@
 import { Product } from "@/gql/graphql";
+import { Rating } from "@/ui/molecules/Rating";
 import { formatMoney } from "@/utils/money";
 
 type ProductListItemDescriptionProps = {
@@ -9,6 +10,7 @@ export const ProductListItemDescription = ({ product }: ProductListItemDescripti
 	return (
 		<div className="flex flex-col flex-1 gap-4 w-full justify-between">
 			<h3 className="text-xs">{product.name}</h3>
+			<Rating id="overal-rating" value={Math.ceil(product.reviewAvg || 0)} />
 			<p data-testid="product-price" className="font-bold text-xs">
 				{formatMoney(product.price)}
 			</p>

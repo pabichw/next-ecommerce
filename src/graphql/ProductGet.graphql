@@ -23,5 +23,6 @@ query ProductGet($id: ID!) {
 			name
 			email
 		}
+		reviewAvg
 	}
 }

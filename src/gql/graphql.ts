@@ -102,6 +102,7 @@ export type Product = {
   name: Scalars['String']['output'];
   price: Scalars['Int']['output'];
   relatedProduct?: Maybe<Array<Maybe<Product>>>;
+  reviewAvg?: Maybe<Scalars['Float']['output']>;
   reviews?: Maybe<Array<Maybe<Review>>>;
   slug: Scalars['String']['output'];
 };
@@ -185,33 +186,33 @@ export type CategoryGetQueryVariables = Exact<{
 }>;
 
 
-export type CategoryGetQuery = { category?: { data: Array<{ id: string, name: string, slug: string, product?: Array<{ id: string, name: string, price: number, image: string } | null> | null }>, pagination?: { pages: number, total: number } | null } | null };
+export type CategoryGetQuery = { category?: { data: Array<{ id: string, name: string, slug: string, product?: Array<{ id: string, name: string, price: number, image: string, reviewAvg?: number | null } | null> | null }>, pagination?: { pages: number, total: number } | null } | null };
 
 export type CategoryGetListQueryVariables = Exact<{
   pagination: PaginationInput;
 }>;
 
 
-export type CategoryGetListQuery = { category?: { data: Array<{ id: string, name: string, slug: string, product?: Array<{ name: string, id: string, slug: string } | null> | null }>, pagination?: { pages: number, total: number } | null } | null };
+export type CategoryGetListQuery = { category?: { data: Array<{ id: string, name: string, slug: string }>, pagination?: { pages: number, total: number } | null } | null };
 
 export type CollectionGetQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type CollectionGetQuery = { collection: Array<{ id: string, name: string, product?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
+export type CollectionGetQuery = { collection: Array<{ id: string, name: string, product?: Array<{ id: string, name: string, image: string, price: number, reviewAvg?: number | null } | null> | null } | null> };
 
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionsGetListQuery = { collection: Array<{ id: string, name: string, product?: Array<{ id: string, name: string, image: string, price: number } | null> | null } | null> };
+export type CollectionsGetListQuery = { collection: Array<{ id: string, name: string } | null> };
 
 export type ProductGetQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, category?: Array<{ name: string, slug: string } | null> | null, relatedProduct?: Array<{ id: string, name: string, image: string, price: number } | null> | null, reviews?: Array<{ headline: string, content: string, rating: number, name: string, email: string } | null> | null } | null> };
+export type ProductGetQuery = { product: Array<{ id: string, name: string, price: number, image: string, description: string, configurableAttributes?: string | null, reviewAvg?: number | null, category?: Array<{ name: string, slug: string } | null> | null, relatedProduct?: Array<{ id: string, name: string, image: string, price: number } | null> | null, reviews?: Array<{ headline: string, content: string, rating: number, name: string, email: string } | null> | null } | null> };
 
 export type ProductsGetListQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -220,7 +221,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { product: Array<{ id: string, name: string, price: number, image: string, category?: Array<{ name: string } | null> | null } | null> };
+export type ProductsGetListQuery = { product: Array<{ id: string, name: string, price: number, image: string, reviewAvg?: number | null, category?: Array<{ name: string } | null> | null } | null> };
 
 export type CreateReviewMutationVariables = Exact<{
   productId: Scalars['ID']['input'];
@@ -307,6 +308,7 @@ export const CategoryGetDocument = new TypedDocumentString(`
         name
         price
         image
+        reviewAvg
       }
     }
     pagination {
@@ -323,11 +325,6 @@ export const CategoryGetListDocument = new TypedDocumentString(`
       id
       name
       slug
-      product {
-        name
-        id
-        slug
-      }
     }
     pagination {
       pages
@@ -346,6 +343,7 @@ export const CollectionGetDocument = new TypedDocumentString(`
       name
       image
       price
+      reviewAvg
     }
   }
 }
@@ -355,12 +353,6 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
   collection {
     id
     name
-    product {
-      id
-      name
-      image
-      price
-    }
   }
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
@@ -390,6 +382,7 @@ export const ProductGetDocument = new TypedDocumentString(`
       name
       email
     }
+    reviewAvg
   }
 }
     `) as unknown as TypedDocumentString<ProductGetQuery, ProductGetQueryVariables>;
@@ -403,6 +396,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     category {
       name
     }
+    reviewAvg
   }
 }
     `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
