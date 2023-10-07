@@ -14,7 +14,13 @@ export const metadata: Metadata = {
 	description: "Your goto shop for shopping.",
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+	children,
+	modal,
+}: {
+	children: React.ReactNode;
+	modal: React.ReactNode;
+}) {
 	const categories = await getCategories({ page: 1, pageSize: 10 });
 
 	return (
@@ -29,6 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				/>
 				{children}
 				<Footer />
+				{modal}
 			</body>
 		</html>
 	);
