@@ -7,11 +7,18 @@ import {
 } from "@/gql/graphql";
 import { executeGraphql } from "@/utils/gql";
 
-export async function getProducts({ page }: { page: string }): Promise<Product[] | null> {
+export async function getProducts({
+	page,
+	sorting,
+}: {
+	page: string;
+	sorting?: string;
+}): Promise<Product[] | null> {
 	const { product: products } = await executeGraphql(
 		ProductsGetListDocument,
 		{
 			pagination: { page: Number(page), pageSize: 10 },
+			sorting,
 		},
 		{ tags: ["products"] },
 	);

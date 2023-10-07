@@ -1,5 +1,5 @@
-query ProductsGetList($name: String, $pagination: PaginationInput!) {
-	product(name: $name, pagination: $pagination) {
+query ProductsGetList($name: String, $pagination: PaginationInput, $sorting: String) {
+	product(name: $name, pagination: $pagination, sorting: $sorting) {
 		id
 		name
 		price

@@ -7,7 +7,6 @@ import { getCartFromCookies } from "@/api/cart";
 function Minicart() {
 	const cart = getCartFromCookies();
 
-	console.log("minicart - cart", cart);
 	return (
 		<Touchable>
 			<Link href={"/cart" as Route}>
