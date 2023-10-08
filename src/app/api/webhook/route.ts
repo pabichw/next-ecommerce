@@ -1,5 +1,5 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export function GET(request: NextRequest): Response {
+export function GET(): Response {
 	return NextResponse.json({ message: "Marco Polo" });
 }
