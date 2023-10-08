@@ -28,11 +28,11 @@ async function ProductsPage({ params, searchParams }: ProductsPageProps) {
 
 	return (
 		<main className="column-wrapper flex flex-col gap-20">
-			<div className="mb-5">
+			<div className="">
 				<SortProducts defaultSorting={searchParams.sorting} />
 			</div>
 			<ProductList products={products} />
-			<Pagination resourcePath={"/products"} totalPages={3} />
+			<Pagination resourcePath={"/products"} totalPages={3} searchParams={searchParams} />
 		</main>
 	);
 }
