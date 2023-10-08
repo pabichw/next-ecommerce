@@ -1,17 +1,22 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type Route } from "next";
 import { isEmpty } from "radash";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 
 type PaginationProps = {
-	resourcePath: string
-	totalPages: number
-	searchParams?: Record<'sorting', string>
+	resourcePath: string;
+	totalPages: number;
+	searchParams?: Record<"sorting", string>;
 };
 
 function Pagination({ resourcePath, searchParams, totalPages }: PaginationProps) {
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
-	const endingSearchParms = isEmpty(searchParams) ? '' : `/?${Object.entries(searchParams).reduce((aggr, [key, value]) => `${aggr}${key}=${value}&`, '')}`;
+	const endingSearchParms = isEmpty(searchParams)
+		? ""
+		// @ts-ignore
+		: `/?${Object.entries(searchParams).reduce(
+				(aggr, [key, value]) => `${aggr}${key}=${value}&`,
+				"",
+		  )}`;
 
 	return (
 		<nav aria-label="Pagination" className="flex gap-2 mx-auto">
