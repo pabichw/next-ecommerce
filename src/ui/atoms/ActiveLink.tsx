@@ -22,7 +22,7 @@ function ActiveLink<T extends string>({
 	exact = true,
 }: ActiveLinkProps<T>) {
 	const pathname = usePathname();
-	const isActive = exact ? pathname === href : pathname.includes(href);
+	const isActive = exact ? href.startsWith(pathname) : pathname.includes(href);
 
 	return (
 		<Link
