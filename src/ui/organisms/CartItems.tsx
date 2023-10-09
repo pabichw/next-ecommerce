@@ -18,7 +18,7 @@ function CartItems({ cart }: { cart?: Order | null }) {
 									type="decrement"
 									dataTestId="decrement"
 								/>
-								<span data-testId="quantity" className="w-8 text-center">
+								<span data-testid="quantity" className="w-8 text-center">
 									{item.quantity}
 								</span>
 								<ChangeItemQty

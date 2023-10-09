@@ -30,19 +30,17 @@ function SortProducts({ defaultSorting }: { defaultSorting: string }) {
 				placeholder="Sort by..."
 				onChange={handleOnChange}
 			>
-				<option selected value="">
-					Default
-				</option>
-				<option value="sort-price-asc" data-testId="sort-by-price">
+				<option value="">Default</option>
+				<option value="sort-price-asc" data-testid="sort-by-price">
 					Sort by price ascending
 				</option>
-				<option value="sort-price-desc" data-testId="sort-by-price">
+				<option value="sort-price-desc" data-testid="sort-by-price">
 					Sort by price descending
 				</option>
-				<option value="sort-rating-asc" data-testId="sort-by-rating">
+				<option value="sort-rating-asc" data-testid="sort-by-rating">
 					Sort by rating ascending
 				</option>
-				<option value="sort-rating-desc" data-testId="sort-by-rating">
+				<option value="sort-rating-desc" data-testid="sort-by-rating">
 					Sort by rating descending
 				</option>
 			</SelectInput>

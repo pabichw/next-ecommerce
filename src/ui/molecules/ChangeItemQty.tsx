@@ -27,7 +27,7 @@ export function ChangeItemQty({
 
 	return (
 		<button
-			data-testId={dataTestId}
+			data-testid={dataTestId}
 			disabled={isDisabled}
 			className={twMerge(
 				"w-5 bg-neutral-100 rounded-sm flex items-center justify-between transition-colors",

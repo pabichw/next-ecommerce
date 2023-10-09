@@ -12,8 +12,8 @@ type PaginationProps = {
 function Pagination({ resourcePath, searchParams, totalPages }: PaginationProps) {
 	const endingSearchParms = isEmpty(searchParams)
 		? ""
-		// @ts-ignore
-		: `/?${Object.entries(searchParams).reduce(
+		: // @ts-ignore
+		  `/?${Object.entries(searchParams).reduce(
 				(aggr, [key, value]) => `${aggr}${key}=${value}&`,
 				"",
 		  )}`;
