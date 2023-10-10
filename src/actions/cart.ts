@@ -21,17 +21,24 @@ export async function changeItemQtyAction(orderId: string, orderItemId: string, 
 	await getOrCreateCart();
 }
 
-export async function markOrderAndClear(cartId: string, status: string, stripCheckoutSession?: Stripe.Checkout.Session): Promise<void> {
-		"use server"	
-		
-		if (!cartId) {
-			console.log('No cartid. wont update order ');
-			return
-		}
+export async function markOrderAndClear(
+	cartId: string,
+	status: string,
+	stripCheckoutSession?: Stripe.Checkout.Session,
+): Promise<void> {
+	"use server";
 
-		await updateOrderStatus({ orderId: cartId || '', status: "paid" })
-		
-		if (stripCheckoutSession?.customer_details?.email) {
-				await updateOrderOwnership({ orderId: cartId || '', userEmail: stripCheckoutSession.customer_details?.email })
-		}
+	if (!cartId) {
+		console.log("No cartid. wont update order ");
+		return;
+	}
+
+	await updateOrderStatus({ orderId: cartId || "", status: "paid" });
+
+	if (stripCheckoutSession?.customer_details?.email) {
+		await updateOrderOwnership({
+			orderId: cartId || "",
+			userEmail: stripCheckoutSession.customer_details?.email,
+		});
+	}
 }

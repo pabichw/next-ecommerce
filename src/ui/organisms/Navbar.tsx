@@ -1,6 +1,6 @@
+import { SignedIn } from "@clerk/nextjs";
 import { HomeIcon, LayersIcon, ListChecks } from "lucide-react";
 import { Route } from "next";
-import { SignedIn } from "@clerk/nextjs";
 import Link from "next/link";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 import Logo from "@/ui/atoms/Logo";

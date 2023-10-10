@@ -8,7 +8,7 @@ function Auth() {
 			<SignedIn>
 				<UserButton userProfileMode="navigation" />
 			</SignedIn>
-			<SignedOut >
+			<SignedOut>
 				<SignInButton />
 			</SignedOut>
 		</div>
