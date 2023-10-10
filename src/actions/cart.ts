@@ -1,6 +1,5 @@
 "use server";
 
-import { cookies } from "next/headers";
 import Stripe from "stripe";
 import { addToCart, changeItemQty, getOrCreateCart } from "@/api/cart";
 import { updateOrderOwnership, updateOrderStatus } from "@/api/orders";
