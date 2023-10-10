@@ -38,6 +38,8 @@ export type Mutation = {
   addToCart?: Maybe<Order>;
   insertReview?: Maybe<Review>;
   updateOrderItemQty?: Maybe<OrderItem>;
+  updateOrderOwnership?: Maybe<OrderItem>;
+  updateOrderStatus?: Maybe<OrderItem>;
   upsertProduct?: Maybe<Product>;
 };
 
@@ -63,6 +65,19 @@ export type MutationUpdateOrderItemQtyArgs = {
 };
 
 
+export type MutationUpdateOrderOwnershipArgs = {
+  orderId: Scalars['ID']['input'];
+  userEmail?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationUpdateOrderStatusArgs = {
+  orderId: Scalars['ID']['input'];
+  status: Scalars['String']['input'];
+};
+
+
 export type MutationUpsertProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   product: ProductUpsertInput;
@@ -72,7 +87,8 @@ export type Order = {
   id: Scalars['ID']['output'];
   items?: Maybe<Array<Maybe<OrderItem>>>;
   status?: Maybe<Scalars['String']['output']>;
-  userConnection?: Maybe<Scalars['String']['output']>;
+  userEmailConnection?: Maybe<Scalars['String']['output']>;
+  userIdConnection?: Maybe<Scalars['String']['output']>;
 };
 
 export type OrderItem = {
@@ -119,6 +135,7 @@ export type Query = {
   cart?: Maybe<Order>;
   category?: Maybe<CategoryWithPagination>;
   collection: Array<Maybe<Collection>>;
+  order?: Maybe<Array<Maybe<Order>>>;
   product: Array<Maybe<Product>>;
 };
 
@@ -136,6 +153,12 @@ export type QueryCategoryArgs = {
 
 export type QueryCollectionArgs = {
   name?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryOrderArgs = {
+  userEmail?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
@@ -206,6 +229,30 @@ export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CollectionsGetListQuery = { collection: Array<{ id: string, name: string } | null> };
+
+export type UpdateOrderOwnershipMutationVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+  userId?: InputMaybe<Scalars['String']['input']>;
+  userEmail?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type UpdateOrderOwnershipMutation = { updateOrderOwnership?: { id: string } | null };
+
+export type UpdateOrderStatusMutationVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+  status: Scalars['String']['input'];
+}>;
+
+
+export type UpdateOrderStatusMutation = { updateOrderStatus?: { id: string } | null };
+
+export type OrderGetListQueryVariables = Exact<{
+  userId?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type OrderGetListQuery = { order?: Array<{ id: string, status?: string | null, items?: Array<{ quantity: number, product?: { name: string } | null } | null> | null } | null> | null };
 
 export type ProductGetQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -356,6 +403,34 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
+export const UpdateOrderOwnershipDocument = new TypedDocumentString(`
+    mutation UpdateOrderOwnership($orderId: ID!, $userId: String, $userEmail: String) {
+  updateOrderOwnership(orderId: $orderId, userId: $userId, userEmail: $userEmail) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<UpdateOrderOwnershipMutation, UpdateOrderOwnershipMutationVariables>;
+export const UpdateOrderStatusDocument = new TypedDocumentString(`
+    mutation UpdateOrderStatus($orderId: ID!, $status: String!) {
+  updateOrderStatus(orderId: $orderId, status: $status) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<UpdateOrderStatusMutation, UpdateOrderStatusMutationVariables>;
+export const OrderGetListDocument = new TypedDocumentString(`
+    query OrderGetList($userId: ID) {
+  order(userId: $userId) {
+    id
+    status
+    items {
+      product {
+        name
+      }
+      quantity
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<OrderGetListQuery, OrderGetListQueryVariables>;
 export const ProductGetDocument = new TypedDocumentString(`
     query ProductGet($id: ID!) {
   product(id: $id) {

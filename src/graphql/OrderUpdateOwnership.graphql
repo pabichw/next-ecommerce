@@ -1,0 +1,5 @@
+mutation UpdateOrderOwnership($orderId: ID!, $userId: String, $userEmail: String) {
+  updateOrderOwnership(orderId: $orderId, userId: $userId, userEmail: $userEmail) {
+    id
+  }
+}

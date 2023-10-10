@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Stripe from "stripe";
+import { markOrderAndClear } from "@/actions/cart";
 
 export default async function CartSuccess({
 	searchParams,
 }: {
-	searchParams: { session_id: string };
+	searchParams: { cart_id: string, session_id: string };
 }) {
 	if (!process.env.STRIPE_SECRET_KEY) {
 		return null;
@@ -16,6 +17,10 @@ export default async function CartSuccess({
 	});
 
 	const stripeCheckoutSession = await stripe.checkout.sessions.retrieve(searchParams.session_id);
+
+	if (searchParams.cart_id && stripeCheckoutSession.status === 'complete') {
+		await markOrderAndClear(searchParams.cart_id, 'paid', stripeCheckoutSession)
+	}
 
 	return (
 		<main className="column-wrapper text-center mt-32">

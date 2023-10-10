@@ -16,7 +16,7 @@ export default function CartPage() {
 						href="/cart/details"
 						className="text-sm text-neutral-600 hover:text-neutral-900 hover:underline"
 					>
-						Details
+						View details
 					</Link>
 				</div>
 				<Payments cart={cart} />

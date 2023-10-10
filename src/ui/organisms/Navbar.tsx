@@ -1,5 +1,7 @@
 import { HomeIcon, LayersIcon, ListChecks } from "lucide-react";
 import { Route } from "next";
+import { SignedIn } from "@clerk/nextjs";
+import Link from "next/link";
 import ActiveLink from "@/ui/atoms/ActiveLink";
 import Logo from "@/ui/atoms/Logo";
 import Auth from "@/ui/molecules/Auth";
@@ -56,6 +58,11 @@ function Navbar({ categories }: NavbarProps) {
 				<SearchInput />
 			</div>
 			<div className="flex gap-5 items-center justify-between ">
+				<SignedIn>
+					<Link href="/orders" className="text-neutral-400 text-xs leading-3 hover:underline">
+						Your orders
+					</Link>
+				</SignedIn>
 				<Auth />
 				<Minicart />
 			</div>

@@ -1,8 +1,10 @@
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import { auth } from "@clerk/nextjs";
 import { Maybe, OrderItem } from "@/gql/graphql";
 import { getCartFromCookies } from "@/api/cart";
+import { updateOrderOwnership } from "@/api/orders";
 
 export async function handleStripePaymentAction() {
 	"use server";
@@ -42,13 +44,17 @@ export async function handleStripePaymentAction() {
 			}))
 			.filter(Boolean),
 		mode: "payment",
-		success_url: `${headers().get("origin")}/cart/success?session_id={CHECKOUT_SESSION_ID}`,
+		success_url: `${headers().get("origin")}/cart/success?session_id={CHECKOUT_SESSION_ID}&cart_id=${cart.id}`,
 		cancel_url: `${headers().get("origin")}/canceled`,
 	});
 
 	if (session.url) {
-		cookies().delete("cartId");
+		if (session.status === 'open') {
+			await updateOrderOwnership({ orderId: cart.id, userId: auth().userId || undefined, userEmail: '' })
+		}
+
 		cookies().delete("cart");
+		cookies().delete("cartId");
 		redirect(session.url);
 	}
 }

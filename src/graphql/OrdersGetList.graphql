@@ -1,0 +1,12 @@
+query OrderGetList($userId: ID) {
+	order(userId: $userId) {
+		id
+		status
+		items {
+			product {
+				name
+			}
+			quantity
+		}
+	}
+}

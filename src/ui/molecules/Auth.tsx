@@ -1,17 +1,17 @@
 "use client";
 
-import { User } from "lucide-react";
-import Touchable from "@/ui/atoms/Touchable";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 function Auth() {
-	const onClick = (): void => {
-		console.log("click");
-	};
-
 	return (
-		<Touchable onClick={onClick}>
-			<User size={20} strokeWidth={2} />
-		</Touchable>
+		<div className="w-16 hover:underline">
+			<SignedIn>
+				<UserButton userProfileMode="navigation" />
+			</SignedIn>
+			<SignedOut >
+				<SignInButton />
+			</SignedOut>
+		</div>
 	);
 }
 
