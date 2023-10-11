@@ -5,6 +5,7 @@ import { addToCart, changeItemQty, getOrCreateCart } from "@/api/cart";
 import { updateOrderOwnership, updateOrderStatus } from "@/api/orders";
 
 export async function addToCartAction(formData: FormData) {
+	"use server"
 	const cart = await getOrCreateCart();
 	if (!cart) {
 		throw new Error("Error getting/creating cart");
