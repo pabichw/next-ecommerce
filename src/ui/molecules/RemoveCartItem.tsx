@@ -6,7 +6,6 @@ function RemoveCartItem({ orderId, orderItemId }: { orderId: string; orderItemId
 		<button
 			className="text-red-900 hover:underline"
 			formAction={async () => {
-				"use server";
 				await changeItemQtyAction(orderId, orderItemId, 0);
 			}}
 		>

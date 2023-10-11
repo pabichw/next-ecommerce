@@ -23,7 +23,7 @@ export async function changeItemQtyAction(orderId: string, orderItemId: string, 
 
 export async function markOrderAndClear(
 	cartId: string,
-	status: string,
+	_: string,
 	stripCheckoutSession?: Stripe.Checkout.Session,
 ): Promise<void> {
 	"use server";

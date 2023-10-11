@@ -5,11 +5,14 @@ import { MinusIcon, PlusIcon } from "lucide-react";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import { twMerge } from "tailwind-merge";
 import { changeItemQtyAction } from "@/actions/cart";
+import RemoveCartItem from "./RemoveCartItem";
 
 export function ChangeItemQty({
+	orderId,
 	orderItemId,
 	currentQty,
 }: {
+	orderId: string;
 	orderItemId: string;
 	currentQty: number;
 }) {
@@ -19,7 +22,7 @@ export function ChangeItemQty({
 	);
 
 	return (
-		<form>
+		<form className="flex">
 			<button
 				data-testid="increment"
 				className={twMerge(
@@ -38,9 +41,9 @@ export function ChangeItemQty({
 			<span data-testid="quantity" className="w-8 text-center">
 				{optimisticValue}
 			</span>
-
 			<button
 				data-testid="decrement"
+				disabled={optimisticValue === 1}
 				type="submit"
 				className={twMerge(
 					"w-5 bg-neutral-100 rounded-sm flex items-center justify-between transition-colors",
@@ -55,6 +58,9 @@ export function ChangeItemQty({
 			>
 				 <MinusIcon />
 			</button>
+			<span className="ml-5">
+					<RemoveCartItem orderId={orderId} orderItemId={orderItemId} />
+			</span>
 		</form>
 	);
 }
