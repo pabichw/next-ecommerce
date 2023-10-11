@@ -73,8 +73,8 @@ export const Reviews = ({
 				<div>No reviews for this product 🥵 Be first</div>
 			) : (
 				<ul data-testid="reviews-list">
-					{optimisticReviews.map((review) => (
-						<ReviewItem key={review?.id} review={review} />
+					{optimisticReviews.map((review, idx) => (
+						<ReviewItem key={`review-${idx}`} review={review} />
 					))}
 				</ul>
 			)}

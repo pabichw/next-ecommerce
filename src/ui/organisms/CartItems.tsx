@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Order } from "@/gql/graphql";
 import { ChangeItemQty } from "@/ui/molecules/ChangeItemQty";
 import RemoveCartItem from "@/ui/molecules/RemoveCartItem";
@@ -10,7 +11,7 @@ function CartItems({ cart }: { cart?: Order | null }) {
 				(item) =>
 					item && (
 						<li key={`${item.id}`} className="flex w-full justify-between items-center">
-							<span>{item.product?.name}</span>
+							<Link href={`/product/${item.product?.id}`}>{item.product?.name}</Link>
 							<form className="flex items-center">
 								<ChangeItemQty
 									orderItemId={item.id}

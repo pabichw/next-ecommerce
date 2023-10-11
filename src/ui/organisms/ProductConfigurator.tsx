@@ -40,7 +40,6 @@ function AttributeValue({
 
 	const isActive = window.location.search.includes(`${name}%3A${value}`);
 	const type = getType(value);
-	console.log(value, type, isActive);
 
 	return (
 		<div

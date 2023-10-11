@@ -37,13 +37,15 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 		<main className="column-wrapper md:px-32 pt-12 md:pt-28">
 			<div className="flex flex-col md:flex-row gap-8 space-between">
 				<div className="flex-1 p-5 border-grey-200 shadow-sm bg-white rounded-lg">
-					<Image
-						className="mx-auto"
-						width={400}
-						height={400}
-						src={product.image}
-						alt={product.name}
-					/>
+					{product.image &&
+						<Image
+							className="mx-auto"
+							width={400}
+							height={400}
+							src={product.image}
+							alt={product.name}
+						/>
+					}
 				</div>
 				<div className="flex-1 flex flex-col gap-2 py-5">
 					<h1 className="font-bold text-xl">{product.name}</h1>
