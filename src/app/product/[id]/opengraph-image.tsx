@@ -27,7 +27,11 @@ export default async function og({ params }: OgProps) {
 		(
 			<div tw="flex flex-row w-full bg-white h-full items-center justify-center text-8xl">
 				<div tw="flex w-[30%]">
-					{product.image ? <img tw="rounded-md" width="300px" src={product.image} /> : <span></span>}
+					{product.image ? (
+						<img tw="rounded-md" width="300px" src={product.image} />
+					) : (
+						<span></span>
+					)}
 				</div>
 				<div tw="flex flex-col ml-6 w-[60%]">
 					<p tw="font-sans uppercase m-0 p-0 font-bold text-[30px]">{product.name}</p>

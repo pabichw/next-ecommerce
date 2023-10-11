@@ -4,8 +4,9 @@
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import { twMerge } from "tailwind-merge";
-import { changeItemQtyAction } from "@/actions/cart";
+
 import RemoveCartItem from "./RemoveCartItem";
+import { changeItemQtyAction } from "@/actions/cart";
 
 export function ChangeItemQty({
 	orderId,
@@ -26,7 +27,7 @@ export function ChangeItemQty({
 			<button
 				data-testid="increment"
 				className={twMerge(
-					"w-5 bg-neutral-100 rounded-sm flex items-center justify-between transition-colors"
+					"w-5 bg-neutral-100 rounded-sm flex items-center justify-between transition-colors",
 				)}
 				type="submit"
 				formAction={async () => {
@@ -36,7 +37,7 @@ export function ChangeItemQty({
 					await changeItemQtyAction("", orderItemId, newValue);
 				}}
 			>
-				 <PlusIcon />
+				<PlusIcon />
 			</button>
 			<span data-testid="quantity" className="w-8 text-center">
 				{optimisticValue}
@@ -47,7 +48,6 @@ export function ChangeItemQty({
 				type="submit"
 				className={twMerge(
 					"w-5 bg-neutral-100 rounded-sm flex items-center justify-between transition-colors",
-					
 				)}
 				formAction={async () => {
 					const newValue = optimisticValue - 1;
@@ -56,10 +56,10 @@ export function ChangeItemQty({
 					await changeItemQtyAction("", orderItemId, newValue);
 				}}
 			>
-				 <MinusIcon />
+				<MinusIcon />
 			</button>
 			<span className="ml-5">
-					<RemoveCartItem orderId={orderId} orderItemId={orderItemId} />
+				<RemoveCartItem orderId={orderId} orderItemId={orderItemId} />
 			</span>
 		</form>
 	);

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import { Order } from "@/gql/graphql";
 import { ChangeItemQty } from "@/ui/molecules/ChangeItemQty";
 
@@ -11,11 +11,7 @@ function CartItems({ cart }: { cart?: Order | null }) {
 					item && (
 						<li key={`${item.id}`} className="flex w-full justify-between items-center">
 							<Link href={`/product/${item.product?.id}`}>{item.product?.name}</Link>
-							<ChangeItemQty
-								orderId={cart.id}
-								orderItemId={item.id}
-								currentQty={item.quantity}
-							/>
+							<ChangeItemQty orderId={cart.id} orderItemId={item.id} currentQty={item.quantity} />
 						</li>
 					),
 			)}
