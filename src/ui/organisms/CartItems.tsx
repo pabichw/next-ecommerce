@@ -12,26 +12,13 @@ function CartItems({ cart }: { cart?: Order | null }) {
 					item && (
 						<li key={`${item.id}`} className="flex w-full justify-between items-center">
 							<Link href={`/product/${item.product?.id}`}>{item.product?.name}</Link>
-							<form className="flex items-center">
 								<ChangeItemQty
 									orderItemId={item.id}
 									currentQty={item.quantity}
-									type="decrement"
-									dataTestId="decrement"
 								/>
-								<span data-testid="quantity" className="w-8 text-center">
-									{item.quantity}
-								</span>
-								<ChangeItemQty
-									orderItemId={item.id}
-									currentQty={item.quantity}
-									type="increment"
-									dataTestId="increment"
-								/>
-								<span className="ml-5">
-									<RemoveCartItem orderId={cart.id} orderItemId={item.id} />
-								</span>
-							</form>
+							<span className="ml-5">
+								<RemoveCartItem orderId={cart.id} orderItemId={item.id} />
+							</span>
 						</li>
 					),
 			)}
