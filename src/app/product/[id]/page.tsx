@@ -5,6 +5,7 @@ import { addToCartAction } from "@/actions/cart";
 import { getProductById } from "@/api/products";
 import { AddToCart } from "@/ui/molecules/AddToCart";
 import { Rating } from "@/ui/molecules/Rating";
+import ProductConfigurator from "@/ui/organisms/ProductConfigurator";
 import { RelatedProduct } from "@/ui/organisms/RelatedProducts";
 import { Reviews } from "@/ui/organisms/Reviews";
 import { formatMoney } from "@/utils/money";
@@ -54,6 +55,11 @@ async function ProductPage({ params: { id } }: ProductPageProps) {
 					{product.description && (
 						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">
 							{product.description}
+						</p>
+					)}
+					{product.configurableAttributes && (
+						<p className="mt-5 p-2 border-grey-200 shadow-sm bg-white rounded-lg">
+							<ProductConfigurator product={product} />
 						</p>
 					)}
 					<form action={addToCartAction}>

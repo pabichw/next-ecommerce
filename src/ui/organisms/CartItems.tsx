@@ -11,6 +11,7 @@ function CartItems({ cart }: { cart?: Order | null }) {
 					item && (
 						<li key={`${item.id}`} className="flex w-full justify-between items-center">
 							<Link href={`/product/${item.product?.id}`}>{item.product?.name}</Link>
+							<p className="text-neutral-300">{item.configurableAttributes}</p>
 							<ChangeItemQty orderId={cart.id} orderItemId={item.id} currentQty={item.quantity} />
 						</li>
 					),

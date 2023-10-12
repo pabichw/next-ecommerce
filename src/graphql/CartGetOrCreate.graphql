@@ -4,6 +4,7 @@ query getOrCreateCart($id: ID!) {
 		items {
 			id
 			quantity
+			configurableAttributes
 			product {
 				name
 				id

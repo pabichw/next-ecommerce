@@ -194,14 +194,14 @@ export type AddToCartMutationVariables = Exact<{
 }>;
 
 
-export type AddToCartMutation = { addToCart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { id: string, name: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
+export type AddToCartMutation = { addToCart?: { id: string, items?: Array<{ id: string, quantity: number, configurableAttributes?: string | null, product?: { id: string, name: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
 
 export type GetOrCreateCartQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, product?: { name: string, id: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
+export type GetOrCreateCartQuery = { cart?: { id: string, items?: Array<{ id: string, quantity: number, configurableAttributes?: string | null, product?: { name: string, id: string, configurableAttributes?: string | null, price: number, image: string } | null } | null> | null } | null };
 
 export type CategoryGetQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -252,7 +252,7 @@ export type OrderGetListQueryVariables = Exact<{
 }>;
 
 
-export type OrderGetListQuery = { order?: Array<{ id: string, status?: string | null, items?: Array<{ quantity: number, product?: { name: string } | null } | null> | null } | null> | null };
+export type OrderGetListQuery = { order?: Array<{ id: string, status?: string | null, items?: Array<{ configurableAttributes?: string | null, quantity: number, product?: { name: string } | null } | null> | null } | null> | null };
 
 export type ProductGetQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -314,6 +314,7 @@ export const AddToCartDocument = new TypedDocumentString(`
     items {
       id
       quantity
+      configurableAttributes
       product {
         id
         name
@@ -332,6 +333,7 @@ export const GetOrCreateCartDocument = new TypedDocumentString(`
     items {
       id
       quantity
+      configurableAttributes
       product {
         name
         id
@@ -423,6 +425,7 @@ export const OrderGetListDocument = new TypedDocumentString(`
     id
     status
     items {
+      configurableAttributes
       product {
         name
       }

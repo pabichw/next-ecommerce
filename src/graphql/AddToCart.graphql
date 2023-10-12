@@ -9,6 +9,7 @@ mutation addToCart($id: ID!, $productId: ID!, $quantity: Int!, $configurableAttr
 		items {
 			id
 			quantity
+			configurableAttributes
 			product {
 				id
 				name

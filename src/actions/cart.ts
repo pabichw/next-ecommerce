@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import Stripe from "stripe";
 import { addToCart, changeItemQty, getOrCreateCart } from "@/api/cart";
 import { updateOrderOwnership, updateOrderStatus } from "@/api/orders";
@@ -11,7 +12,14 @@ export async function addToCartAction(formData: FormData) {
 		throw new Error("Error getting/creating cart");
 	}
 
-	await addToCart(cart.id, String(formData.get("productId")), 1, "");
+	const configurableAttributes = new URL(headers().get("referer") || "").searchParams.get("attr");
+
+	await addToCart(
+		cart.id,
+		String(formData.get("productId")),
+		1,
+		configurableAttributes || undefined,
+	);
 }
 
 export async function changeItemQtyAction(orderId: string, orderItemId: string, quantity: number) {

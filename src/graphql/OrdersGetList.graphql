@@ -3,6 +3,7 @@ query OrderGetList($userId: ID) {
 		id
 		status
 		items {
+			configurableAttributes
 			product {
 				name
 			}
