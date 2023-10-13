@@ -10,21 +10,21 @@ type CategoryPageProps = {
 	};
 };
 
-export async function generateStaticParams(): Promise<{ slug: string; page: string; }[]> {
+export async function generateStaticParams(): Promise<{ slug: string; page: string }[]> {
 	const fetchResult = await getCategories({ page: 1, pageSize: 10 });
-	const categories = fetchResult?.data.map(cat => cat.slug)
+	const categories = fetchResult?.data.map((cat) => cat.slug);
 
 	if (!categories) {
-		return []
-	};
+		return [];
+	}
 
-	const result: Array<{slug: string, page: string}> = []
-	categories.forEach(cat => {
+	const result: Array<{ slug: string; page: string }> = [];
+	categories.forEach((cat) => {
 		Array.from({ length: 1 }).forEach((_, idx) => {
-				result.push({ slug: cat, page: `${idx + 1}` })
+			result.push({ slug: cat, page: `${idx + 1}` });
 		});
-	})
-	
+	});
+
 	return result;
 }
 
