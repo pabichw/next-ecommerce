@@ -10,11 +10,13 @@ type CategoryPageProps = {
 	};
 };
 
-export function generateStaticParams() {
-	return Array.from({ length: 1 }).map((_, idx) => {
-		return { page: (idx + 1).toString() };
-	});
-}
+// export function generateStaticParams(params: unknown) {
+// 	console.log('params', params);
+
+// 	return Array.from({ length: 1 }).map((_, idx) => {
+// 		return { page: (idx + 1).toString() };
+// 	});
+// }
 
 export async function generateMetadata({
 	params,
