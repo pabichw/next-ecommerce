@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getCategoryBySlug } from "@/api/categories";
+import { getCategories, getCategoryBySlug } from "@/api/categories";
 import Pagination from "@/ui/organisms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 
@@ -10,13 +10,23 @@ type CategoryPageProps = {
 	};
 };
 
-// export function generateStaticParams(params: unknown) {
-// 	console.log('params', params);
+export async function generateStaticParams(): Promise<{ slug: string; page: string; }[]> {
+	const fetchResult = await getCategories({ page: 1, pageSize: 10 });
+	const categories = fetchResult?.data.map(cat => cat.slug)
 
-// 	return Array.from({ length: 1 }).map((_, idx) => {
-// 		return { page: (idx + 1).toString() };
-// 	});
-// }
+	if (!categories) {
+		return []
+	};
+
+	const result: Array<{slug: string, page: string}> = []
+	categories.forEach(cat => {
+		Array.from({ length: 1 }).forEach((_, idx) => {
+				result.push({ slug: cat, page: `${idx + 1}` })
+		});
+	})
+	
+	return result;
+}
 
 export async function generateMetadata({
 	params,
